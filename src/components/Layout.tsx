@@ -3,5 +3,9 @@ type Props = {
 };
 
 export const Layout: React.VFC<Props> = (props) => {
-  return <div className="font-sans">{props.children}</div>;
+  return (
+    <div className="font-sans text-gray-600 text-center m-auto">
+      {props.children}
+    </div>
+  );
 };

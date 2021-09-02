@@ -1,9 +1,11 @@
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.{js,ts,jsx,tsx}"],
+  // mode: "jit",
+  purge: ["./src/**/*.{ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    maxWidth: {
+      90: "90%",
+    },
   },
   variants: {
     extend: {},
