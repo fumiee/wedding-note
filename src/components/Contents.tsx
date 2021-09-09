@@ -19,7 +19,8 @@ const ITEM = [
     icon: <BsBook size={50} color={"#5A5A5A"} className="m-auto" />,
     head: "ヨム",
     text: `他の花嫁さまの記録を閲覧できます。
-    １回目の打ち合わせで話す具体的な内容はどんなのだろう…といった疑問も解消できるかもしれません。`,
+    同じ都道府県の花嫁さまの記録から好みのドレスショップを見つけたり
+    同じ式場の花嫁さまからのアドバイスが見れるかもしれません。`,
   },
   {
     icon: <BsCheck size={50} color={"#5A5A5A"} className="m-auto" />,
