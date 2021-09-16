@@ -622,10 +622,10 @@ export interface paths {
           id?: parameters["rowFilter.todos.id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
-          user_id?: parameters["rowFilter.todos.user_id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -679,10 +679,10 @@ export interface paths {
           id?: parameters["rowFilter.todos.id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
-          user_id?: parameters["rowFilter.todos.user_id"];
         };
         header: {
           /** Preference */
@@ -700,10 +700,10 @@ export interface paths {
           id?: parameters["rowFilter.todos.id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
-          user_id?: parameters["rowFilter.todos.user_id"];
         };
         body: {
           /** todos */
@@ -866,14 +866,14 @@ export interface definitions {
     id: string;
     created_at?: string;
     updated_at?: string;
-    group_id: string;
-    todo: string;
-    is_done: boolean;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
     user_id: string;
+    group_id?: string;
+    todo: string;
+    is_done?: boolean;
   };
 }
 
@@ -948,12 +948,8 @@ export interface parameters {
   "rowFilter.todos.id": string;
   "rowFilter.todos.created_at": string;
   "rowFilter.todos.updated_at": string;
+  "rowFilter.todos.user_id": string;
   "rowFilter.todos.group_id": string;
   "rowFilter.todos.todo": string;
   "rowFilter.todos.is_done": string;
-  "rowFilter.todos.user_id": string;
 }
-
-export interface operations {}
-
-export interface external {}
