@@ -5,12 +5,12 @@ import Link from "next/link";
 export const Entry: React.VFC = () => {
   return (
     <div className="my-12">
-      <p className="font-medium text-2xl">{"あなたも書いてみよう"}</p>
+      <p className="text-2xl font-medium">{"あなたも書いてみよう"}</p>
       <p className="">{"自分だけのwedding note"}</p>
       <div className="flex justify-center">
         <Image src={girl} alt="girl" height={150} width={120} />
         <Link href="/">
-          <a className="text-xl border-4 h-16 w-36 mt-10 pt-1 rounded-2xl">
+          <a className="pt-1 mt-10 w-36 h-16 text-xl rounded-2xl border-4">
             ログイン
             <div className="text-xs">/ 新規登録</div>
           </a>

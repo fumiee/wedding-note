@@ -34,14 +34,14 @@ const ITEM = [
 export const Contents: React.VFC = () => {
   return (
     <div className="m-auto text-center">
-      <p className="mt-8 font-semibold text-4xl">What's note?</p>
+      <p className="mt-8 text-4xl font-semibold">What's note?</p>
       <p className="mb-20">{"wedding noteでできること"}</p>
       {ITEM.map((item) => {
         return (
-          <div key={item.head} className="border-4 m-3 p-5 mt-12 rounded-2xl">
+          <div key={item.head} className="p-5 m-3 mt-12 rounded-2xl border-4">
             <div>{item.icon}</div>
-            <p className="my-3 font-semibold text-xl">{item.head}</p>
-            <p className="max-w-90 m-auto">{item.text}</p>
+            <p className="my-3 text-xl font-semibold">{item.head}</p>
+            <p className="m-auto max-w-90">{item.text}</p>
           </div>
         );
       })}
