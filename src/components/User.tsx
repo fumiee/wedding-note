@@ -5,7 +5,7 @@ import Image from "next/image";
 
 type Profile = Pick<definitions["profiles"], "name" | "avatar">;
 
-export const MyPage: React.VFC<Profile> = () => {
+export const User: React.VFC<Profile> = () => {
   const [profile, setProfile] = useState<Profile>();
 
   // useEffect(() => {

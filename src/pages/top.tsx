@@ -1,8 +1,8 @@
-import { Contents } from "src/components/Contents";
-import { Entry } from "src/components/Entry";
+import { Contents } from "src/components/intro/Contents";
+import { Entry } from "src/components/intro/Entry";
 import { Footer } from "src/components/Footer";
-import { Header } from "src/components/Header";
-import { Top } from "src/components/Top";
+import { Header } from "src/components/intro/Header";
+import { Top } from "src/components/intro/Top";
 
 const Home = () => {
   return (
