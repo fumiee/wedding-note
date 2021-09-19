@@ -10,10 +10,15 @@ export const LoginedHeader: React.VFC = () => {
     <div className="flex justify-between p-4">
       <IoIosSearch size={30} color={"#5A5A5A"} className="mt-1" />
       <Link href="/" passHref>
-        <Image src={logo} alt="logo" height={40} width={203} />
+        <a>
+          <Image src={logo} alt="logo" height={40} width={203} />
+        </a>
       </Link>
+
       <Link href="/myPage" passHref>
-        <AiOutlineUser size={30} color={"#5A5A5A"} className="mt-1" />
+        <a>
+          <AiOutlineUser size={30} color={"#5A5A5A"} className="mt-1" />
+        </a>
       </Link>
     </div>
   );
