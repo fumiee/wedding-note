@@ -5,7 +5,7 @@ import { Footer } from "./Footer";
 
 export const Auth: React.VFC = () => {
   const handleLogin = async () => {
-    const { user, session, error } = await supabase.auth.signIn({
+    await supabase.auth.signIn({
       provider: "google",
     });
   };
