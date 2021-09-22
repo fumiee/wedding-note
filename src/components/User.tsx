@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
 import Image from "next/image";
@@ -30,10 +30,10 @@ export const User: React.VFC<Profile> = () => {
     }
   };
 
-  const signOut = () => {
+  const signOut = useCallback(() => {
     supabase.auth.signOut();
     setProfile(undefined);
-  };
+  }, []);
 
   const updateProfile = ({ name, avatar, wedding_hall, description }: Update) => {
     try {
