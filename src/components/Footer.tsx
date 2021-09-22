@@ -10,7 +10,7 @@ const ITEM = [
 
 export const Footer: React.VFC = () => {
   return (
-    <div className="p-10 bg-gray-500 text-gray-100">
+    <div className="p-10 text-gray-100 bg-gray-500">
       {ITEM.map((item) => {
         return (
           <div key={item.label} className="mb-5">
