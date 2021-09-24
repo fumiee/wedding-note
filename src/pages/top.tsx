@@ -1,17 +1,16 @@
 import { Contents } from "src/components/intro/Contents";
 import { Entry } from "src/components/intro/Entry";
-import { Footer } from "src/components/Footer";
-import { Header } from "src/components/intro/Header";
 import { Top } from "src/components/intro/Top";
+import { GuestLayout } from "src/components/intro/GuestLayout";
 
 const Home = () => {
   return (
     <div>
-      <Header />
-      <Top />
-      <Contents />
-      <Entry />
-      <Footer />
+      <GuestLayout>
+        <Top />
+        <Contents />
+        <Entry />
+      </GuestLayout>
     </div>
   );
 };

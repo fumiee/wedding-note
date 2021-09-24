@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { Session } from "@supabase/supabase-js";
-import { Auth } from "./Auth";
+import { Auth } from "../Auth";
 
 type Props = {
   children: JSX.Element;

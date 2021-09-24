@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
-import { Layout } from "src/components/Layout";
+import { Layout } from "src/components/layout/Layout";
 import { AuthProvider } from "src/contexts/AuthContext";
 
 // eslint-disable-next-line func-style
