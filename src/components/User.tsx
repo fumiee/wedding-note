@@ -11,7 +11,6 @@ export const User: React.VFC<Profile> = () => {
 
   useEffect(() => {
     fetchProfiles();
-    console.log(1);
   }, []);
 
   const fetchProfiles = async () => {

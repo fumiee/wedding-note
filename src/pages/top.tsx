@@ -1,7 +1,7 @@
 import { Contents } from "src/components/intro/Contents";
 import { Entry } from "src/components/intro/Entry";
 import { Top } from "src/components/intro/Top";
-import { GuestLayout } from "src/components/intro/GuestLayout";
+import { GuestLayout } from "src/components/layout/GuestLayout";
 
 const Home = () => {
   return (
