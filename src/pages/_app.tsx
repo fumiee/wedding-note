@@ -2,16 +2,28 @@
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 import { Layout } from "src/components/layout/Layout";
-import { AuthProvider } from "src/contexts/AuthContext";
+import { useEffect, useState } from "react";
+import { supabase } from "src/libs/supabase";
+import type { Session } from "@supabase/supabase-js";
 
 // eslint-disable-next-line func-style
 function MyApp({ Component, pageProps }: AppProps) {
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+    return () => {
+      authListener?.unsubscribe();
+    };
+  }, []);
+
   return (
-    <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthProvider>
+    <Layout>
+      <Component {...pageProps} session={session} />
+    </Layout>
   );
 }
 export default MyApp;

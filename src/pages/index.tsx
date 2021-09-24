@@ -1,11 +1,11 @@
-import { useContext } from "react";
 import { Account } from "src/components/Account";
 import { Auth } from "src/components/Auth";
-import { AuthContext } from "src/contexts/AuthContext";
+import type { Session } from "@supabase/supabase-js";
 
-//ログアウトしたら<Auth />に移動してほしい。
-const Home = () => {
-  const { session } = useContext(AuthContext);
-  return <div className="flex-1">{!session ? <Auth /> : <Account />}</div>;
+type Props = {
+  session: Session;
+};
+const Home = (props: Props) => {
+  return <div>{!props.session ? <Auth /> : <Account />}</div>;
 };
 export default Home;
