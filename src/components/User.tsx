@@ -4,11 +4,15 @@ import type { definitions } from "src/types/supabase";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-type Profile = Pick<definitions["profiles"], "name" | "avatar">;
-type Update = Pick<definitions["profiles"], "name" | "avatar" | "wedding_hall" | "description" | "updated_at">;
+// type Profile = Pick<definitions["profiles"], "name" | "avatar">;
+// type Profile = definitions["profiles"]
 
-export const User: React.VFC<Profile> = () => {
-  const [profile, setProfile] = useState<Profile>();
+export const User: React.VFC<definitions["profiles"]> = () => {
+  const [profile, setProfile] = useState<definitions["profiles"]>();
+  const [username, setUsername] = useState(profile?.name);
+  const [avatar_url, setAvatarUrl] = useState(profile?.avatar);
+  const [weddingHall, setWeddingHall] = useState(profile?.wedding_hall);
+  const [description, setDescription] = useState(profile?.description);
 
   useEffect(() => {
     fetchProfiles();
@@ -20,7 +24,7 @@ export const User: React.VFC<Profile> = () => {
     try {
       const res = await supabase
         .from<definitions["profiles"]>("profiles")
-        .select("name,avatar")
+        .select("name,avatar,wedding_hall,description")
         .eq("user_id", user.id)
         .single();
       if (res.error) throw res.error;
@@ -35,16 +39,24 @@ export const User: React.VFC<Profile> = () => {
     setProfile(undefined);
   }, []);
 
-  const updateProfile = ({ name, avatar, wedding_hall, description }: Update) => {
+  const updateProfile = async () => {
     try {
-      // const user = supabase.auth.user();
+      const user = supabase.auth.user();
       const updates = {
-        name,
-        avatar,
-        wedding_hall,
-        description,
-        update_at: new Date(),
+        user_id: user?.id,
+        name: username,
+        avatar: avatar_url,
+        wedding_hall: weddingHall,
+        description: description,
+        updated_at: new Date(),
       };
+      const { error } = await supabase.from("profiles").upsert(updates, {
+        returning: "minimal",
+      });
+
+      if (error) {
+        throw error;
+      }
     } catch (error) {
       console.error("error", error);
     }
@@ -58,45 +70,69 @@ export const User: React.VFC<Profile> = () => {
   };
 
   return (
-    <div className="m-auto space-y-8 max-w-90">
+    <div className="m-auto space-y-8">
       <div className="flex justify-around">
-        <div>
+        <div className="rounded-full border-4">
           {profile?.avatar ? (
-            <Image src={profile.avatar} alt="avatar" height={100} width={100} className="rounded-full" />
+            <Image src={profile.avatar} alt="avatar" height={120} width={120} className="rounded-full" />
           ) : (
-            <div className="w-28 h-28 bg-gray-200 rounded-full" />
+            <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28 md:w-40 md:h-40" />
           )}
         </div>
         <div>
-          <div className="flex justify-around mb-5">
-            <button className="px-2 text-gray-400 border-2" onClick={updateProfile}>
-              Up date
-            </button>
-            <button className=" px-2 text-gray-400 border-2" onClick={signOut}>
+          <div className=" flex justify-around mb-5">
+            <button className=" px-2 text-gray-400 border-2 border-gray-300" onClick={signOut}>
               Sign Out
+            </button>
+            <button className="px-2 text-gray-500 bg-gray-200 border-2 border-gray-300" onClick={HandleUpdateProfile}>
+              Up Date
             </button>
           </div>
           <p></p>
-          <label htmlFor="name" className="flex justify-start mb-5">
+          <label htmlFor="name" className="flex justify-start mb-5 ml-3 text-gray-400">
             name
           </label>
           <p />
-          <input type="text" id="name" defaultValue={profile?.name} className="w-full text-center border-b-2" />
+          <input
+            type="text"
+            id="name"
+            defaultValue={profile?.name}
+            className="w-full text-center border-b-2"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div>
-        <label htmlFor="name" className="flex justify-start">
+        <label htmlFor="wedding_hall" className="flex justify-start mb-5 ml-3 text-gray-400">
           wedding hall
         </label>
         <p />
-        <input type="text" id="hall" className="m-auto w-full border-b-2" />
+        <input
+          type="text"
+          id="wedding_hall"
+          defaultValue={profile?.wedding_hall}
+          className="m-auto w-full text-center border-b-2"
+          onChange={(e) => {
+            setWeddingHall(e.target.value);
+          }}
+        />
       </div>
       <div>
-        <label htmlFor="comment" className="flex justify-start">
+        <label htmlFor="description" className="flex justify-start mb-5 ml-3 text-gray-400">
           comment
         </label>
         <p />
-        <input type="text" id="comment" className="w-full border-b-2" />
+        <input
+          type="text"
+          id="description"
+          defaultValue={profile?.description}
+          className="w-full text-center border-b-2"
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
       </div>
     </div>
   );
