@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 type Profile = Pick<definitions["profiles"], "name" | "avatar">;
 type Update = Pick<definitions["profiles"], "name" | "avatar" | "wedding_hall" | "description" | "updated_at">;
@@ -47,6 +48,13 @@ export const User: React.VFC<Profile> = () => {
     } catch (error) {
       console.error("error", error);
     }
+  };
+  const HandleUpdateProfile = () => {
+    toast.promise(updateProfile(), {
+      loading: "更新中",
+      success: "更新しました",
+      error: "更新に失敗しました",
+    });
   };
 
   return (

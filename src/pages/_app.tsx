@@ -5,6 +5,7 @@ import { Layout } from "src/components/layout/Layout";
 import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { Session } from "@supabase/supabase-js";
+import { Toaster } from "react-hot-toast";
 
 // eslint-disable-next-line func-style
 function MyApp({ Component, pageProps }: AppProps) {
@@ -21,9 +22,21 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Layout>
-      <Component {...pageProps} session={session} />
-    </Layout>
+    <div>
+      <Layout>
+        <Component {...pageProps} session={session} />
+      </Layout>
+      <Toaster
+        toastOptions={{
+          className: "",
+          duration: 2000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
+    </div>
   );
 }
 export default MyApp;
