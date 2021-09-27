@@ -28,6 +28,7 @@ export const Todo: React.VFC = () => {
       if (!data) throw new Error();
 
       setLists(data);
+      // console.log(1, lists);
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +38,7 @@ export const Todo: React.VFC = () => {
     fetchTodos();
   }, [fetchTodos]);
 
-  const handleAddTodo = useCallback(async () => {
+  const handleAddTodo = async () => {
     const user = supabase.auth.user();
     const task = newTaskText.trim();
     if (task.length && user?.id) {
@@ -49,22 +50,49 @@ export const Todo: React.VFC = () => {
       setLists([...lists, { todo: task, id: todos.id }]);
       setNewTaskText("");
     }
-  }, [lists, newTaskText]);
+  };
+
+  const handleDelete = useCallback(
+    async (id: string) => {
+      try {
+        await supabase.from("todos").delete().eq("id", id);
+        const filter = lists.filter((list) => {
+          return list.id !== id;
+        });
+
+        setLists(filter);
+      } catch (error) {
+        console.error("error", error);
+      }
+    },
+    [lists]
+  );
 
   return (
     <div>
       <h1>todolist</h1>
-      <button>グループの追加</button>
-      <div>group1</div>
-      <input type="text" className="bg-gray-200" value={newTaskText} onChange={handleInputTask} />
+      {/* <button>グループの追加</button> */}
+      {/* <div>group1</div> */}
       <p>{errorText}</p>
+      <input type="text" className="bg-gray-200" value={newTaskText} onChange={handleInputTask} />
       <button className="border-2" onClick={handleAddTodo}>
         add
       </button>
 
       <div>
         {lists.map((list) => {
-          return <div key={list.id}>{list.todo}</div>;
+          return (
+            <div key={list.id} className="flex justify-between m-4">
+              <div>{list.todo}</div>
+              <button
+                onClick={() => {
+                  return handleDelete(list.id);
+                }}
+              >
+                ×
+              </button>
+            </div>
+          );
         })}
       </div>
     </div>
