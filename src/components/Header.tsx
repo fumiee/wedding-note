@@ -8,7 +8,7 @@ import logo from "/public/logo.svg";
 
 export const Header: React.VFC = () => {
   return (
-    <div className="flex justify-between p-4">
+    <div className="flex justify-between py-1 px-2 pt-3">
       <IoIosSearch size={30} color={"#5A5A5A"} className="mt-1" />
       <Link href="/top" passHref>
         <a>

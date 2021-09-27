@@ -2,6 +2,10 @@ import { Tab } from "@headlessui/react";
 import { Todo } from "./Todo";
 import { Footer } from "./Footer";
 import { LoginedHeader } from "./LoginedHeader";
+import { App } from "./TextEditor";
+import { IoHomeOutline } from "react-icons/io5";
+import { IoBookmarkOutline } from "react-icons/io5";
+import { IoCheckboxOutline } from "react-icons/io5";
 
 export const Account: React.VFC = () => {
   return (
@@ -11,12 +15,20 @@ export const Account: React.VFC = () => {
         <Tab.Group>
           <Tab.List>
             <div className="flex justify-around">
-              <Tab>1</Tab>
-              <Tab>2</Tab>
-              <Tab>3</Tab>
+              <Tab className=" w-2/6 h-8 bg-gray-100">
+                <IoHomeOutline size={25} color={"#5A5A5A"} className="m-auto" />
+              </Tab>
+              <Tab className=" w-2/6 h-8 bg-gray-200">
+                {" "}
+                <IoBookmarkOutline size={25} color={"#5A5A5A"} className="m-auto" />
+              </Tab>
+              <Tab className=" w-2/6 h-8 bg-gray-300">
+                {" "}
+                <IoCheckboxOutline size={25} color={"#5A5A5A"} className="m-auto" />
+              </Tab>
             </div>
             <Tab.Panels>
-              <Tab.Panel>最新記事</Tab.Panel>
+              <Tab.Panel>{/* <App /> */}</Tab.Panel>
 
               <Tab.Panel>お気に入り</Tab.Panel>
 

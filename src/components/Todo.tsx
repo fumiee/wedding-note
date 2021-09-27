@@ -69,7 +69,7 @@ export const Todo: React.VFC = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-300">
       <h1>todolist</h1>
       {/* <button>グループの追加</button> */}
       {/* <div>group1</div> */}
