@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
+import { BsPencil } from "react-icons/bs";
+import { AddTaskForm } from "src/components/todo/AddTaskForm";
+import { HandleDone } from "src/components/todo/HandleDone";
 
 type List = Pick<definitions["todos"], "id" | "group_id" | "todo">;
 
 export const Todo: React.VFC = () => {
   const [lists, setLists] = useState<List[]>([]);
-  const [newTaskText, setNewTaskText] = useState("");
+  const [isShow, setIsShow] = useState(false);
   const [errorText, setErrorText] = useState("");
-
-  const handleInputTask = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskText(e.target.value);
-  }, []);
 
   const fetchTodos = useCallback(async () => {
     try {
@@ -28,7 +27,6 @@ export const Todo: React.VFC = () => {
       if (!data) throw new Error();
 
       setLists(data);
-      // console.log(1, lists);
     } catch (error) {
       console.error(error);
     }
@@ -37,20 +35,6 @@ export const Todo: React.VFC = () => {
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
-
-  const handleAddTodo = async () => {
-    const user = supabase.auth.user();
-    const task = newTaskText.trim();
-    if (task.length && user?.id) {
-      const { data: todos, error } = await supabase.from("todos").insert({ todo: task, user_id: user.id }).single();
-      if (error) {
-        setErrorText(error.message);
-        return;
-      }
-      setLists([...lists, { todo: task, id: todos.id }]);
-      setNewTaskText("");
-    }
-  };
 
   const handleDelete = useCallback(
     async (id: string) => {
@@ -68,22 +52,34 @@ export const Todo: React.VFC = () => {
     [lists]
   );
 
+  const reversedLists = [...lists].reverse();
+
   return (
     <div className="min-h-screen bg-gray-300">
       <h1>todolist</h1>
       {/* <button>グループの追加</button> */}
       {/* <div>group1</div> */}
       <p>{errorText}</p>
-      <input type="text" className="bg-gray-200" value={newTaskText} onChange={handleInputTask} />
-      <button className="border-2" onClick={handleAddTodo}>
-        add
-      </button>
 
-      <div>
-        {lists.map((list) => {
+      <button
+        onClick={() => {
+          setIsShow((isShow) => {
+            return !isShow;
+          });
+        }}
+      >
+        <BsPencil size={25} color={"#5A5A5A"} />
+      </button>
+      {isShow ? <AddTaskForm setErrorText={setErrorText} setLists={setLists} lists={lists} /> : null}
+
+      <div className=" m-auto w-3/4">
+        {reversedLists.map((list) => {
           return (
-            <div key={list.id} className="flex justify-between m-4">
-              <div>{list.todo}</div>
+            <div key={list.id} className=" flex justify-between m-4">
+              <div className="flex">
+                <HandleDone />
+                {list.todo}
+              </div>
               <button
                 onClick={() => {
                   return handleDelete(list.id);
