@@ -3,7 +3,7 @@ import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
 import { BsPencil } from "react-icons/bs";
 import { AddTaskForm } from "src/components/todo/AddTaskForm";
-import { HandleDone } from "src/components/todo/HandleDone";
+import { HandleDone } from "src/components/HandleDone";
 
 type List = Pick<definitions["todos"], "id" | "group_id" | "todo">;
 
