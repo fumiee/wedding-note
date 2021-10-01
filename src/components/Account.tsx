@@ -1,11 +1,11 @@
 import { Tab } from "@headlessui/react";
-import { Todo } from "./Todo";
+import { Todo } from "./todo/Todo";
 import { Footer } from "./Footer";
 import { LoginedHeader } from "./LoginedHeader";
-import { App } from "./TextEditor";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { IoCheckboxOutline } from "react-icons/io5";
+import { Posts } from "src/components/post.tsx/Posts";
 
 export const Account: React.VFC = () => {
   return (
@@ -28,7 +28,9 @@ export const Account: React.VFC = () => {
               </Tab>
             </div>
             <Tab.Panels>
-              <Tab.Panel>{/* <App /> */}</Tab.Panel>
+              <Tab.Panel>
+                <Posts />
+              </Tab.Panel>
 
               <Tab.Panel>お気に入り</Tab.Panel>
 
