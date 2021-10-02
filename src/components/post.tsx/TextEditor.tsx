@@ -2,7 +2,8 @@
 import { EditorState } from "draft-js";
 import { useState } from "react";
 import { HandlePost } from "src/components/post.tsx/HandlePost";
-import { AiOutlinePlus } from "react-icons/ai";
+import Link from "next/link";
+import { IoMdArrowBack } from "react-icons/io";
 
 // import { MegadraftEditor, editorStateFromRaw } from "megadraft";
 // import "megadraft/dist/css/megadraft.css";
@@ -10,35 +11,24 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 export const TextEditor = () => {
   const [postText, setPostText] = useState<string>("");
-  const [isShow, setIsShow] = useState(false);
 
   return (
-    <div className="bg-gray-100">
-      {isShow ? (
-        <div>
-          <div className="flex flex-col">
-            <textarea
-              className="p-5 m-auto w-11/12 rounded-lg"
-              value={postText}
-              onChange={(e) => {
-                setPostText(e.target.value);
-              }}
-            ></textarea>
-            <HandlePost postText={postText} setIsShow={setIsShow} setPostText={setPostText} />
-          </div>
-        </div>
-      ) : (
-        <button
-          className="bg-gray-600 rounded-full backdrop-opacity-30"
-          onClick={() => {
-            setIsShow((isShow) => {
-              return !isShow;
-            });
-          }}
-        >
-          <AiOutlinePlus size={50} color={"#fff"} className="sticky bottom-0" />
-        </button>
-      )}
+    <div className="min-h-screen bg-gray-100">
+      <div className=" flex justify-between mx-4">
+        <Link href="/">
+          <a>
+            <IoMdArrowBack size={35} color={"#5A5A5A"} className="mt-5" />
+          </a>
+        </Link>
+        <HandlePost postText={postText} setPostText={setPostText} />
+      </div>
+      <textarea
+        className="p-5 m-auto w-11/12 min-h-screen rounded-lg"
+        value={postText}
+        onChange={(e) => {
+          setPostText(e.target.value);
+        }}
+      ></textarea>
     </div>
   );
 };
