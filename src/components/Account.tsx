@@ -15,14 +15,14 @@ export const Account: React.VFC = () => {
         <Tab.Group>
           <Tab.List>
             <div className="flex justify-around">
-              <Tab className=" w-2/6 h-8 bg-gray-100">
+              <Tab className=" w-2/6 h-8 bg-gray-300">
                 <IoHomeOutline size={25} color={"#5A5A5A"} className="m-auto" />
               </Tab>
               <Tab className=" w-2/6 h-8 bg-gray-200">
                 {" "}
                 <IoBookmarkOutline size={25} color={"#5A5A5A"} className="m-auto" />
               </Tab>
-              <Tab className=" w-2/6 h-8 bg-gray-300">
+              <Tab className=" w-2/6 h-8 bg-gray-100">
                 {" "}
                 <IoCheckboxOutline size={25} color={"#5A5A5A"} className="m-auto" />
               </Tab>

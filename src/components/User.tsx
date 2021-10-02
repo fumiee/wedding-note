@@ -72,7 +72,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
   return (
     <div className="m-auto space-y-8">
       <div className="flex justify-around">
-        <div className="rounded-full border-4">
+        <div>
           {profile?.avatar ? (
             <Image src={profile.avatar} alt="avatar" height={120} width={120} className="rounded-full" />
           ) : (
@@ -85,7 +85,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
               Sign Out
             </button>
             <button className="px-2 text-gray-500 bg-gray-200 border-2 border-gray-300" onClick={HandleUpdateProfile}>
-              Up Date
+              Update
             </button>
           </div>
           <p></p>
@@ -124,8 +124,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
           comment
         </label>
         <p />
-        <input
-          type="text"
+        <textarea
           id="description"
           defaultValue={profile?.description}
           className="w-full text-center border-b-2"

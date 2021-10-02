@@ -55,7 +55,7 @@ export const Todo: React.VFC = () => {
   const reversedLists = [...lists].reverse();
 
   return (
-    <div className="min-h-screen bg-gray-300">
+    <div className="min-h-screen bg-gray-100">
       <h1>todolist</h1>
       {/* <button>グループの追加</button> */}
       {/* <div>group1</div> */}
