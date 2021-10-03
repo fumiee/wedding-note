@@ -10,8 +10,8 @@ export const Auth: React.VFC = () => {
   };
   return (
     <GuestLayout>
-      <h1 className="mt-20 mb-2 text-xl">新規登録 / ログイン</h1>
-      <p className="mb-16 text-sm">※google loginのみ対応しております。</p>
+      <h1 className="mt-24 mb-16 text-xl">新規登録 / ログイン</h1>
+      {/* <p className="text-sm mb-">※google loginのみ対応しております。</p> */}
       <button
         onClick={() => {
           handleLogin();

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
 import { AiOutlinePlus } from "react-icons/ai";
-import Link from "next/link";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
+import Link from "next/link";
 import Image from "next/image";
 
 type Post = {
@@ -46,7 +46,6 @@ export const Posts = () => {
 
   return (
     <div className="min-h-screen bg-gray-300">
-      {/* <p>new post</p> */}
       <div>
         {posts?.map((post) => {
           return (
@@ -61,6 +60,7 @@ export const Posts = () => {
                 </div>
                 <div className="flex items-center ml-3 text-sm">{post.user.name}</div>
               </div>
+              <div className="flex p-2">{post.text}</div>
               <div>
                 <div className="flex">{post.text}</div>
               </div>

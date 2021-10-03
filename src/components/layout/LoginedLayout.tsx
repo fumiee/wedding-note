@@ -8,7 +8,9 @@ type Props = {
 export const LoginedLayout = (props: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <LoginedHeader />
+      <div className="sticky top-0">
+        <LoginedHeader />
+      </div>
       <div className="flex-1">{props.children}</div>
       <Footer />
     </div>
