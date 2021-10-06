@@ -10,7 +10,11 @@ type Post = {
   createdAt: definitions["posts"]["created_at"];
   text: definitions["posts"]["text"];
   id: definitions["posts"]["id"];
-  user: { name: definitions["profiles"]["name"]; avatar: definitions["profiles"]["avatar"] };
+  user: {
+    name: definitions["profiles"]["name"];
+    avatar: definitions["profiles"]["avatar"];
+    user_id: definitions["profiles"]["user_id"];
+  };
 };
 
 export const Posts = () => {
@@ -31,7 +35,8 @@ export const Posts = () => {
         id,
         user:posts_user_id_fkey(
           name,
-          avatar
+          avatar,
+          user_id
         )
         `
         )
@@ -49,21 +54,30 @@ export const Posts = () => {
       <div>
         {posts?.map((post) => {
           return (
-            <div key={post.id} className="mb-7 bg-gray-200">
+            <div key={post.id} className="mb-10 bg-gray-200">
               <div className=" flex min-w-max bg-gray-300">
-                <div className="flex flex-col m-2">
-                  {post.user.avatar ? (
-                    <Image src={post.user.avatar} alt="avatar" height={40} width={40} className="rounded-full" />
-                  ) : (
-                    <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
-                  )}
-                </div>
+                <Link href={`/${post.user.user_id}`}>
+                  <a className="flex">
+                    <div className="my-1 mx-2">
+                      {post.user.avatar ? (
+                        <Image src={post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
+                      ) : (
+                        <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
+                      )}
+                    </div>
+                    <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
+                  </a>
+                </Link>
                 <div className="flex items-center ml-3 text-sm">{post.user.name}</div>
               </div>
-              <div className="flex p-2">{post.text}</div>
-              <div>
-                <div className="flex">{post.text}</div>
-              </div>
+              <details className="block">
+                <summary className="list-none">
+                  <div className="px-2 text-left">{post.text.substr(0, 67)}</div>
+                </summary>
+                {post.text.length > 67 ? (
+                  <div className="px-2 pb-1 text-left">{post.text.substr(68, 100000)}</div>
+                ) : null}
+              </details>
             </div>
           );
         })}
