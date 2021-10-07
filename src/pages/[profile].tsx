@@ -6,6 +6,7 @@ import type { definitions } from "src/types/supabase";
 import type { Post } from "src/components/post/Posts";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 import Image from "next/image";
+import { PersonalSearch } from "src/components/PersonalSearch";
 
 const Profile = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const Profile = () => {
       const res = await supabase
         .from<definitions["profiles"]>("profiles")
         .select("name,avatar,wedding_hall,description")
-        .eq("user_id", router.query.profile)
+        .eq("user_id", router.query.profile as string)
         .single();
       if (res.error) throw res.error;
       setProfile(res.data);
@@ -39,7 +40,7 @@ const Profile = () => {
         .from("posts")
         .select("text,id")
         .order("created_at", { ascending: false })
-        .match({ user_id: router.query.profile });
+        .eq("user_id", router.query.profile);
       if (res.error) throw res.error;
       setPosts(res.data);
     } catch (error) {
@@ -77,8 +78,14 @@ const Profile = () => {
           </label>
           <p className="text-center border-b-2">{profile?.description}</p>
         </div>
-        <p>{profile?.name}さんのキロク</p>
-        {posts?.map((post) => {
+      </div>
+      <p className="mt-28">{profile?.name}さんのキロクで検索</p>
+
+      <PersonalSearch userId={router.query.profile as string} setPosts={setPosts} />
+      {posts.length === 0 ? (
+        <p className="mb-10">キロクがありません。</p>
+      ) : (
+        posts.map((post) => {
           return (
             <div key={post.id} className="mb-10 bg-gray-200">
               <div className=" flex min-w-max bg-gray-300">
@@ -104,8 +111,8 @@ const Profile = () => {
               </details>
             </div>
           );
-        })}
-      </div>
+        })
+      )}
     </LoginedLayout>
   );
 };
