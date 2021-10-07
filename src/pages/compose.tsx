@@ -1,4 +1,4 @@
-import { TextEditor } from "src/components/post.tsx/TextEditor";
+import { TextEditor } from "src/components/post/TextEditor";
 
 const Compose = () => {
   return (

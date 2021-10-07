@@ -5,8 +5,9 @@ import { AiOutlinePlus } from "react-icons/ai";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 import Link from "next/link";
 import Image from "next/image";
+// import { Like } from "src/components/Like";
 
-type Post = {
+export type Post = {
   createdAt: definitions["posts"]["created_at"];
   text: definitions["posts"]["text"];
   id: definitions["posts"]["id"];
@@ -68,7 +69,7 @@ export const Posts = () => {
                     <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
                   </a>
                 </Link>
-                <div className="flex items-center ml-3 text-sm">{post.user.name}</div>
+                <div className="flex items-center">{/* <Like /> */}</div>
               </div>
               <details className="block">
                 <summary className="list-none">

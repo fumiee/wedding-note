@@ -3,7 +3,7 @@ import { Todo } from "./todo/Todo";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { IoCheckboxOutline } from "react-icons/io5";
-import { Posts } from "src/components/post.tsx/Posts";
+import { Posts } from "src/components/post/Posts";
 import { Favorite } from "src/components/Favorite";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 

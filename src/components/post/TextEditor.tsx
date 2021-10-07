@@ -1,7 +1,7 @@
 // import ReactDOM from "react-dom";
 import { EditorState } from "draft-js";
 import { useState } from "react";
-import { HandlePost } from "src/components/post.tsx/HandlePost";
+import { HandlePost } from "src/components/post/HandlePost";
 import Link from "next/link";
 import { IoMdArrowBack } from "react-icons/io";
 

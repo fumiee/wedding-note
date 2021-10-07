@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import type { definitions } from "src/types/supabase";
-import type { Post } from "src/components/post.tsx/Posts";
+import type { Post } from "src/components/post/Posts";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 import Image from "next/image";
 
