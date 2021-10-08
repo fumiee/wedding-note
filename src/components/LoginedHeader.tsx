@@ -8,7 +8,12 @@ import logo from "/public/logo.svg";
 export const LoginedHeader: React.VFC = () => {
   return (
     <div className="flex justify-between py-1 px-2 pt-3 bg-white bg-opacity-50">
-      <IoIosSearch size={30} color={"#5A5A5A"} className="mt-1" />
+      <Link href="/search">
+        <a>
+          <IoIosSearch size={30} color={"#5A5A5A"} className="mt-1" />
+        </a>
+      </Link>
+
       <Link href="/" passHref>
         <a>
           <Image src={logo} alt="logo" height={40} width={203} />
