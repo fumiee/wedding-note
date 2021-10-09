@@ -8,14 +8,14 @@ type MyRadioGroupProps = {
 export const MyRadioGroup: VFC<MyRadioGroupProps> = (props) => {
   return (
     <RadioGroup value={props.selection} onChange={props.setSelection} className="space-y-3">
-      <RadioGroup.Label>なにで探す？</RadioGroup.Label>
+      <RadioGroup.Label className="text-sm tracking-widest text-gray-300">なにでさがす？</RadioGroup.Label>
       <RadioGroup.Option value="posts">
         {({ checked }) => {
           return (
             <span
               className={
                 checked
-                  ? "bg-gray-500 px-10 py-1 rounded-lg text-white"
+                  ? "bg-gray-400 px-10 py-1 rounded-lg text-white"
                   : "bg-gray-100 px-10 py-1 rounded-lg text-gray-400"
               }
             >
@@ -24,13 +24,13 @@ export const MyRadioGroup: VFC<MyRadioGroupProps> = (props) => {
           );
         }}
       </RadioGroup.Option>
-      <RadioGroup.Option value="name">
+      <RadioGroup.Option value="profiles">
         {({ checked }) => {
           return (
             <span
               className={
                 checked
-                  ? "bg-gray-500 px-10 py-1 rounded-lg text-white"
+                  ? "bg-gray-400 px-10 py-1 rounded-lg text-white"
                   : "bg-gray-100 px-10 py-1 rounded-lg text-gray-400"
               }
             >
@@ -45,7 +45,7 @@ export const MyRadioGroup: VFC<MyRadioGroupProps> = (props) => {
             <span
               className={
                 checked
-                  ? "bg-gray-500 px-8 py-1 rounded-lg text-white"
+                  ? "bg-gray-400 px-8 py-1 rounded-lg text-white"
                   : "bg-gray-100 px-8 py-1 rounded-lg text-gray-400"
               }
             >
