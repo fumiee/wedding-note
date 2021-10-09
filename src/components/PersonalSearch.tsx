@@ -32,7 +32,7 @@ export const PersonalSearch: VFC<PersonalSearchProps> = (props) => {
   return (
     <div className="flex justify-center mt-10 mb-20">
       <input
-        className="px-2 w-1/2 bg-gray-300 rounded-lg"
+        className="px-2 w-1/2 text-white bg-gray-400 rounded-lg"
         onChange={(e) => {
           setText(e.target.value);
         }}
