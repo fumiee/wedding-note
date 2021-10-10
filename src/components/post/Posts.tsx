@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import { supabase } from "src/libs/supabase";
+import { useEffect } from "react";
 import type { definitions } from "src/types/supabase";
 import { AiOutlinePlus } from "react-icons/ai";
-import type { PostgrestResponse } from "@supabase/postgrest-js";
 import Link from "next/link";
 import Image from "next/image";
+import { useGetPost } from "src/libs/useGetPost";
 // import { Like } from "src/components/Like";
 
 export type Post = {
@@ -19,36 +18,11 @@ export type Post = {
 };
 
 export const Posts = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const { fetchposts, posts } = useGetPost();
 
   useEffect(() => {
     fetchposts();
-  }, []);
-
-  const fetchposts = async () => {
-    try {
-      const res: PostgrestResponse<Post> = await supabase
-        .from("posts")
-        .select(
-          `
-        createdAt:created_at,
-        text,
-        id,
-        user:posts_user_id_fkey(
-          name,
-          avatar,
-          user_id
-        )
-        `
-        )
-        .order("created_at", { ascending: false })
-        .range(0, 5);
-      if (res.error) throw res.error;
-      setPosts(res.data);
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
+  }, [fetchposts]);
 
   return (
     <div className="min-h-screen bg-gray-300">
