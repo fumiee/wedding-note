@@ -1,24 +1,42 @@
+import type { VFC } from "react";
 import { useCallback, useState } from "react";
-import type { Post } from "src/components/post/Posts";
 import { supabase } from "src/libs/supabase";
 import { IoIosSearch } from "react-icons/io";
-import { MyRadioGroup } from "src/components/search/MyRadioGroup";
 import Image from "next/image";
 import Link from "next/link";
 import type { definitions } from "src/types/supabase";
+import { useRouter } from "next/router";
 
-type User = Pick<definitions["profiles"], "name" | "user_id" | "avatar" | "wedding_hall">;
+type Post = {
+  createdAt: definitions["posts"]["created_at"];
+  text: definitions["posts"]["text"];
+  id: definitions["posts"]["id"];
+  user: {
+    name: definitions["profiles"]["name"];
+    avatar: definitions["profiles"]["avatar"];
+    user_id: definitions["profiles"]["user_id"];
+  };
+  name: definitions["profiles"]["name"];
+  avatar: definitions["profiles"]["avatar"];
+  user_id: definitions["profiles"]["user_id"];
+  wedding_hall: definitions["profiles"]["wedding_hall"];
+};
+type SearchForm = {
+  how: string;
+};
 
-export const SearchForm = () => {
+export const SearchForm: VFC<SearchForm> = (props) => {
+  const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  // const [users, setUsers] = useState<User[]>([]);
   const [word, setWord] = useState("");
-  const [selection, setSelection] = useState("posts");
+  // const [selection, setSelection] = useState("posts");
+
   //キロクのとき
   const searchPosts = useCallback(async () => {
     try {
       const res = await supabase
-        .from(selection)
+        .from("posts")
         .select(
           `
           createdAt:created_at,
@@ -35,35 +53,46 @@ export const SearchForm = () => {
         .order("created_at", { ascending: false });
       if (res.error) throw res.error;
       setPosts(res.data);
-      setUsers([]);
     } catch (error) {
       console.error("error", error);
     }
-  }, [selection, word]);
+  }, [word]);
 
-  //名前、結婚式場のとき
-  const searchNameWh = useCallback(async () => {
+  //名前のとき
+  const searchName = useCallback(async () => {
+    try {
+      const res = await supabase.from("profiles").select("name,avatar,user_id,wedding_hall").like("name", `%${word}%`);
+      if (res.error) throw res.error;
+      setPosts(res.data);
+      // setPosts([]);
+    } catch (error) {
+      console.error("error", error);
+    }
+  }, [word]);
+
+  //結婚式場のとき
+  const searchWh = useCallback(async () => {
     try {
       const res = await supabase
         .from("profiles")
         .select("name,avatar,user_id,wedding_hall")
-        .like(selection === "profiles" ? "name" : "wedding_hall", `%${word}%`);
+        .like("wedding_hall", `%${word}%`);
       if (res.error) throw res.error;
-      setUsers(res.data);
-      setPosts([]);
+      setPosts(res.data);
+      // setPosts([]);
     } catch (error) {
       console.error("error", error);
     }
-  }, [selection, word]);
+  }, [word]);
 
   const handleSearch = useCallback(() => {
     if (!word) return;
-    selection === "posts" ? searchPosts() : searchNameWh();
-  }, [searchNameWh, searchPosts, selection, word]);
+    router.pathname === "/postSearch" ? searchPosts() : router.pathname === "/nameSearch" ? searchName() : searchWh();
+  }, [router.pathname, searchName, searchPosts, searchWh, word]);
 
   return (
     <div className="mt-10">
-      <MyRadioGroup selection={selection} setSelection={setSelection} />
+      <p className="text-sm tracking-widest text-gray-400">{props.how}でさがす</p>
       <div className="flex justify-center mt-10 mb-20">
         <input
           className="px-2 w-1/2 text-white bg-gray-400 rounded-lg"
@@ -76,8 +105,8 @@ export const SearchForm = () => {
           <IoIosSearch size={23} color={"#5A5A5A"} onClick={handleSearch} />
         </button>
       </div>
-      {selection === "posts" ? (
-        posts.length !== 0 ? (
+      {posts.length !== 0 ? (
+        router.pathname === "/postSearch" ? (
           posts.map((post) => {
             return (
               <div key={post.id} className="mb-10 bg-gray-200">
@@ -108,13 +137,27 @@ export const SearchForm = () => {
             );
           })
         ) : (
-          <p className="mb-10 text-gray-400">not found</p>
+          posts.map((post) => {
+            return (
+              <div key={post.user_id} className="mb-10 bg-gray-200">
+                <div className=" flex min-w-max bg-gray-300">
+                  <Link href={`/${post.user_id}`}>
+                    <a className="flex">
+                      <div className="my-1 mx-2">
+                        {post.avatar ? (
+                          <Image src={post.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
+                        ) : (
+                          <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
+                        )}
+                      </div>
+                      <div className="flex items-center mx-3 text-sm">{post.name}</div>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            );
+          })
         )
-      ) : //selectionがpostsでない↓
-      users.length !== 0 ? (
-        users.map((user) => {
-          return <div key={user.user_id}>{user.name}</div>;
-        })
       ) : (
         <p className="mb-10 text-gray-400">not found</p>
       )}
