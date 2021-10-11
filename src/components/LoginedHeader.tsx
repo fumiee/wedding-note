@@ -19,7 +19,7 @@ export const LoginedHeader: React.VFC = () => {
             <Menu.Item>
               {({ active }) => {
                 return (
-                  <a className={`${active && "bg-gray-500 text-white rounded-lg"}`} href="/postSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/postSearch">
                     キロク
                   </a>
                 );
@@ -28,7 +28,7 @@ export const LoginedHeader: React.VFC = () => {
             <Menu.Item>
               {({ active }) => {
                 return (
-                  <a className={`${active && "bg-gray-500 text-white rounded-lg"}`} href="/nameSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/nameSearch">
                     ナマエ
                   </a>
                 );
@@ -37,7 +37,7 @@ export const LoginedHeader: React.VFC = () => {
             <Menu.Item>
               {({ active }) => {
                 return (
-                  <a className={`${active && "bg-gray-500 text-white rounded-lg"}`} href="/whSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/whSearch">
                     結婚式場
                   </a>
                 );

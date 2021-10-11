@@ -76,7 +76,7 @@ const Profile = () => {
           <label htmlFor="description" className="flex justify-start mb-5 ml-3 text-gray-400">
             comment
           </label>
-          <p className="text-center border-b-2">{profile?.description}</p>
+          <p className="text-center whitespace-pre-wrap break-words border-b-2">{profile?.description}</p>
         </div>
       </div>
       <p className="mt-28">{profile?.name}さんのキロクで検索</p>
@@ -101,12 +101,12 @@ const Profile = () => {
                 </a>
                 <div className="flex items-center">{/* <Like /> */}</div>
               </div>
-              <details className="block">
+              <details className="block whitespace-pre-wrap break-words">
                 <summary className="list-none">
-                  <div className="px-2 text-left">{post.text.substr(0, 67)}</div>
+                  <div className="px-2 text-left">{post.text.substr(0, 75)}</div>
                 </summary>
-                {post.text.length > 67 ? (
-                  <div className="px-2 pb-1 text-left">{post.text.substr(68, 100000)}</div>
+                {post.text.length > 75 ? (
+                  <div className="px-2 pb-1 text-left">{post.text.substr(75, 100000)}</div>
                 ) : null}
               </details>
             </div>

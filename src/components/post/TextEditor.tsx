@@ -22,13 +22,15 @@ export const TextEditor = () => {
         </Link>
         <HandlePost postText={postText} setPostText={setPostText} />
       </div>
-      <textarea
-        className="p-5 m-auto w-11/12 min-h-screen rounded-lg"
-        value={postText}
-        onChange={(e) => {
-          setPostText(e.target.value);
-        }}
-      ></textarea>
+      <div className="whitespace-pre-wrap">
+        <textarea
+          className="p-5 m-auto w-11/12 min-h-screen rounded-lg"
+          value={postText}
+          onChange={(e) => {
+            setPostText(e.target.value);
+          }}
+        ></textarea>
+      </div>
     </div>
   );
 };
