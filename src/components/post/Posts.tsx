@@ -4,9 +4,10 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetPost } from "src/libs/useGetPost";
-import { LikeButton } from "src/components/LikeButton";
-import { FavoriteButton } from "src/components/FavoriteButton";
+import { LikeButton } from "src/components/post/LikeButton";
+import { FavoriteButton } from "src/components/post/FavoriteButton";
 import { supabase } from "src/libs/supabase";
+import { useFetchFavorits } from "src/libs/useFetchFavoritte";
 
 export type Post = {
   createdAt: definitions["posts"]["created_at"];
@@ -27,12 +28,14 @@ export type Post = {
 };
 
 export const Posts = () => {
-  const { fetchposts, posts } = useGetPost();
+  const { fetchposts, posts } = useGetPost(); //postsは表示する記事
   const [likes, setLikes] = useState<string[]>([]);
+  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
 
   useEffect(() => {
     fetchposts();
     fetchLikes();
+    fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,9 +73,9 @@ export const Posts = () => {
                     <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
                   </a>
                 </Link>
-                <div className="flex items-center">
+                <div className="flex items-center space-x-3">
                   <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
-                  <FavoriteButton postId={post.id} />
+                  <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
                 </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">

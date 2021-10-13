@@ -58,7 +58,11 @@ export const LikeButton: VFC<Props> = (props) => {
   return (
     <div className="flex justify-center">
       <button onClick={hadleClick}>
-        {isLike ? <IoHeartSharp size={22} color={"#5A5A5A"} /> : <IoHeartOutline size={22} color={"#5A5A5A"} />}
+        {isLike ? (
+          <IoHeartSharp size={22} color={"#FB8989"} className="" />
+        ) : (
+          <IoHeartOutline size={22} color={"#5A5A5A"} />
+        )}
       </button>
     </div>
   );
