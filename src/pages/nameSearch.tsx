@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import type { Post } from "src/components/post/Posts";
 import { SearchForm } from "src/components/search/SearchForm";
-import { SearchDisplay } from "src/components/SearchDisplay";
+import { SearchUserDisplay } from "src/components/layout/SearchUserDisplay";
 import { supabase } from "src/libs/supabase";
 
 const NameSearch = () => {
@@ -20,7 +20,7 @@ const NameSearch = () => {
   return (
     <LoginedLayout>
       <SearchForm how={"ナマエ"} handleSearch={searchName} />
-      <SearchDisplay posts={posts} />
+      <SearchUserDisplay posts={posts} />
     </LoginedLayout>
   );
 };
