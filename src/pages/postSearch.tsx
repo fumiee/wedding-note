@@ -1,10 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
 import Image from "next/image";
 import Link from "next/link";
+import { useFetchLikes } from "src/libs/useFetchLikes";
+import { useFetchFavorits } from "src/libs/useFetchFavorits";
+import { LikeButton } from "src/components/post/LikeButton";
+import { FavoriteButton } from "src/components/post/FavoriteButton";
 
 type Post = {
   createdAt: definitions["posts"]["created_at"];
@@ -23,6 +27,15 @@ type Post = {
 
 const PostSearch = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const { likes, setLikes, fetchLikes } = useFetchLikes();
+  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
+
+  useEffect(() => {
+    fetchLikes();
+    fetchFavorits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const searchPosts = useCallback(async (word: string) => {
     try {
       const res = await supabase
@@ -66,7 +79,10 @@ const PostSearch = () => {
                     <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
                   </a>
                 </Link>
-                <div className="flex items-center">{/* <Like /> */}</div>
+                <div className="flex items-center">
+                  <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
+                  <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
+                </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">
                 <summary className="list-none">

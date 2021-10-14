@@ -1,42 +1,39 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabase";
+import { PersonalSearch } from "src/components/PersonalSearch";
+import { useFetchProfiles } from "src/libs/useFetchProfiles";
+import { useFetchPosts } from "src/libs/useFetchPosts";
 import Image from "next/image";
 import toast from "react-hot-toast";
-
-// type Profile = Pick<definitions["profiles"], "name" | "avatar">;
-// type Profile = definitions["profiles"]
+import { FavoriteButton } from "src/components/post/FavoriteButton";
+import { LikeButton } from "src/components/post/LikeButton";
+import { useFetchLikes } from "src/libs/useFetchLikes";
+import { useFetchFavorits } from "src/libs/useFetchFavorits";
 
 export const User: React.VFC<definitions["profiles"]> = () => {
-  const [profile, setProfile] = useState<definitions["profiles"]>();
+  const { profile, fetchProfiles } = useFetchProfiles();
+  const { posts, setPosts, fetchPosts } = useFetchPosts();
   const [username, setUsername] = useState(profile?.name);
-  const [avatar_url, setAvatarUrl] = useState(profile?.avatar);
+  const [avatar_url] = useState(profile?.avatar);
   const [weddingHall, setWeddingHall] = useState(profile?.wedding_hall);
   const [description, setDescription] = useState(profile?.description);
+  const { likes, setLikes, fetchLikes } = useFetchLikes();
+  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
+
+  const user = supabase.auth.user();
 
   useEffect(() => {
-    fetchProfiles();
-  }, []);
-
-  const fetchProfiles = async () => {
-    const user = supabase.auth.user();
     if (!user) return;
-    try {
-      const res = await supabase
-        .from<definitions["profiles"]>("profiles")
-        .select("name,avatar,wedding_hall,description")
-        .eq("user_id", user.id)
-        .single();
-      if (res.error) throw res.error;
-      setProfile(res.data);
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
+    fetchProfiles(user.id);
+    fetchPosts(user.id);
+    fetchLikes();
+    fetchFavorits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const signOut = useCallback(() => {
     supabase.auth.signOut();
-    setProfile(undefined);
   }, []);
 
   const updateProfile = async () => {
@@ -132,6 +129,42 @@ export const User: React.VFC<definitions["profiles"]> = () => {
             setDescription(e.target.value);
           }}
         />
+        <p className="mt-28">キロクを探す</p>
+        <PersonalSearch userId={user?.id as string} setPosts={setPosts} />
+        {posts.length === 0 ? (
+          <p className="mb-10">キロクがありません。</p>
+        ) : (
+          posts.map((post) => {
+            return (
+              <div key={post.id} className="mb-10 bg-gray-200">
+                <div className=" flex min-w-max bg-gray-300">
+                  <a className="flex">
+                    <div className="my-1 mx-2">
+                      {profile?.avatar ? (
+                        <Image src={profile.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
+                      ) : (
+                        <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
+                      )}
+                    </div>
+                    <div className="flex items-center mx-3 text-sm">{profile?.name}</div>
+                  </a>
+                  <div className="flex items-center">
+                    <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
+                    <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
+                  </div>
+                </div>
+                <details className="block whitespace-pre-wrap break-words">
+                  <summary className="list-none">
+                    <div className="px-2 text-left">{post.text.substr(0, 75)}</div>
+                  </summary>
+                  {post.text.length > 75 ? (
+                    <div className="px-2 pb-1 text-left">{post.text.substr(75, 100000)}</div>
+                  ) : null}
+                </details>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

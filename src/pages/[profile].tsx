@@ -1,53 +1,29 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { supabase } from "src/libs/supabase";
+import { useEffect } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
-import type { definitions } from "src/types/supabase";
-import type { Post } from "src/components/post/Posts";
-import type { PostgrestResponse } from "@supabase/postgrest-js";
-import Image from "next/image";
 import { PersonalSearch } from "src/components/PersonalSearch";
+import { useFetchPosts } from "src/libs/useFetchPosts";
+import { useFetchProfiles } from "src/libs/useFetchProfiles";
+import Image from "next/image";
+import { LikeButton } from "src/components/post/LikeButton";
+import { FavoriteButton } from "src/components/post/FavoriteButton";
+import { useFetchLikes } from "src/libs/useFetchLikes";
+import { useFetchFavorits } from "src/libs/useFetchFavorits";
 
 const Profile = () => {
   const router = useRouter();
-  const [profile, setProfile] = useState<definitions["profiles"]>();
-  const [posts, setPosts] = useState<Post[]>([]);
-
+  const { profile, fetchProfiles } = useFetchProfiles();
+  const { posts, setPosts, fetchPosts } = useFetchPosts();
+  const { likes, setLikes, fetchLikes } = useFetchLikes();
+  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
   useEffect(() => {
-    fetchProfiles();
-    fetchposts();
+    if (!router.query.profile) return;
+    fetchProfiles(router.query.profile as string);
+    fetchPosts(router.query.profile as string);
+    fetchLikes();
+    fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
-
-  const fetchProfiles = async () => {
-    if (!router.query.profile) return;
-    try {
-      const res = await supabase
-        .from<definitions["profiles"]>("profiles")
-        .select("name,avatar,wedding_hall,description")
-        .eq("user_id", router.query.profile as string)
-        .single();
-      if (res.error) throw res.error;
-      setProfile(res.data);
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
-
-  const fetchposts = async () => {
-    try {
-      const res: PostgrestResponse<Post> = await supabase
-        .from("posts")
-        .select("text,id")
-        .order("created_at", { ascending: false })
-        .eq("user_id", router.query.profile);
-      if (res.error) throw res.error;
-      setPosts(res.data);
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
-
   return (
     <LoginedLayout>
       <div className="m-auto space-y-8">
@@ -99,7 +75,10 @@ const Profile = () => {
                   </div>
                   <div className="flex items-center mx-3 text-sm">{profile?.name}</div>
                 </a>
-                <div className="flex items-center">{/* <Like /> */}</div>
+                <div className="flex items-center">
+                  <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
+                  <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
+                </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">
                 <summary className="list-none">
