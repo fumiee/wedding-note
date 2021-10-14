@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { definitions } from "src/types/supabase";
 import { AiOutlinePlus } from "react-icons/ai";
 import Link from "next/link";
@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useGetPost } from "src/libs/useGetPost";
 import { LikeButton } from "src/components/post/LikeButton";
 import { FavoriteButton } from "src/components/post/FavoriteButton";
-import { supabase } from "src/libs/supabase";
-import { useFetchFavorits } from "src/libs/useFetchFavoritte";
+import { useFetchFavorits } from "src/libs/useFetchFavorits";
+import { useFetchLikes } from "src/libs/useFetchLikes";
 
 export type Post = {
   createdAt: definitions["posts"]["created_at"];
@@ -29,7 +29,7 @@ export type Post = {
 
 export const Posts = () => {
   const { fetchposts, posts } = useGetPost(); //postsは表示する記事
-  const [likes, setLikes] = useState<string[]>([]);
+  const { likes, setLikes, fetchLikes } = useFetchLikes(); //自分がいいねしたpost_idを全部取得
   const { favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
 
   useEffect(() => {
@@ -38,23 +38,6 @@ export const Posts = () => {
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  //自分がいいねしたpost_idを全部取得
-  const fetchLikes = async () => {
-    const user = supabase.auth.user();
-    try {
-      const res = await supabase.from<definitions["likes"]>("likes").select("post_id").eq("user_id", user?.id);
-      if (res.error) throw res.error;
-
-      setLikes(
-        res.data.map((d) => {
-          return d.post_id;
-        })
-      );
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-300">
