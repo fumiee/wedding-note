@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
@@ -30,18 +30,16 @@ const PostSearch = () => {
   const { likes, setLikes, fetchLikes } = useFetchLikes();
   const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
 
-  useEffect(() => {
-    fetchLikes();
-    fetchFavorits();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const searchPosts = useCallback(async (word: string) => {
-    try {
-      const res = await supabase
-        .from("posts")
-        .select(
-          `
+  const searchPosts = useCallback(
+    async (word: string) => {
+      if (!word) return;
+      fetchLikes();
+      fetchFavorits();
+      try {
+        const res = await supabase
+          .from("posts")
+          .select(
+            `
           createdAt:created_at,
           text,
           id,
@@ -51,15 +49,17 @@ const PostSearch = () => {
             user_id
             )
             `
-        )
-        .like("text", `%${word}%`)
-        .order("created_at", { ascending: false });
-      if (res.error) throw res.error;
-      setPosts(res.data);
-    } catch (error) {
-      console.error("error", error);
-    }
-  }, []);
+          )
+          .like("text", `%${word}%`)
+          .order("created_at", { ascending: false });
+        if (res.error) throw res.error;
+        setPosts(res.data);
+      } catch (error) {
+        console.error("error", error);
+      }
+    },
+    [fetchFavorits, fetchLikes]
+  );
 
   return (
     <LoginedLayout>
