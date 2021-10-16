@@ -1,14 +1,44 @@
-import { useCallback, useState } from "react";
+import type { VFC } from "react";
+import { useState } from "react";
 import { IoSquareOutline } from "react-icons/io5";
 import { IoCheckboxOutline } from "react-icons/io5";
+import { supabase } from "src/libs/supabase";
 
-export const HandleDone = () => {
-  const [isDone, setIsDone] = useState(false);
-  const handleClick = useCallback(() => {
-    setIsDone((isDone) => {
+type Props = {
+  listId: string;
+  isDone: boolean;
+};
+
+export const HandleDone: VFC<Props> = (props) => {
+  const [isDone, setIsDoe] = useState<boolean>(props.isDone);
+
+  const handleClick = () => {
+    setIsDoe((isDone) => {
       return !isDone;
     });
-  }, []);
+    updateIsDone();
+  };
+
+  const updateIsDone = async () => {
+    try {
+      const updates = {
+        is_done: !isDone,
+        updated_at: new Date(),
+      };
+      const { error } = await supabase
+        .from("todos")
+        .update(updates, {
+          returning: "minimal",
+        })
+        .eq("id", props.listId);
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
   return (
     <button onClick={handleClick}>
       {isDone ? (

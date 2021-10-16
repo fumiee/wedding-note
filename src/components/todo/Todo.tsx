@@ -5,7 +5,7 @@ import { BsPencil } from "react-icons/bs";
 import { AddTaskForm } from "src/components/todo/AddTaskForm";
 import { HandleDone } from "src/components/todo/HandleDone";
 
-type List = Pick<definitions["todos"], "id" | "group_id" | "todo">;
+type List = Pick<definitions["todos"], "id" | "group_id" | "todo" | "is_done">;
 
 export const Todo: React.VFC = () => {
   const [lists, setLists] = useState<List[]>([]);
@@ -19,13 +19,10 @@ export const Todo: React.VFC = () => {
 
       const { data, error } = await supabase
         .from<definitions["todos"]>("todos")
-        .select("id,group_id,todo")
-        .eq("user_id", user.id)
-        .eq("is_done", false);
-
+        .select("id,group_id,todo,is_done")
+        .eq("user_id", user.id);
       if (error) throw error;
       if (!data) throw new Error();
-
       setLists(data);
     } catch (error) {
       console.error(error);
@@ -56,9 +53,7 @@ export const Todo: React.VFC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <h1>todolist</h1>
-      {/* <button>グループの追加</button> */}
-      {/* <div>group1</div> */}
+      <h1 className="text-xl">todolist</h1>
       <p>{errorText}</p>
 
       <button
@@ -67,6 +62,7 @@ export const Todo: React.VFC = () => {
             return !isShow;
           });
         }}
+        className="m-5"
       >
         <BsPencil size={25} color={"#5A5A5A"} />
       </button>
@@ -77,7 +73,7 @@ export const Todo: React.VFC = () => {
           return (
             <div key={list.id} className=" flex justify-between m-4">
               <div className="flex">
-                <HandleDone />
+                <HandleDone listId={list.id} isDone={list.is_done as boolean} />
                 {list.todo}
               </div>
               <button
