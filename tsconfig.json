@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/types/supabese.tx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/types/supabese.tx", "src/components/post"],
   "exclude": ["node_modules"]
 }
