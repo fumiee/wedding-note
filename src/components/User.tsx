@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabase";
 import { PersonalSearch } from "src/components/PersonalSearch";
 import { useFetchProfiles } from "src/libs/useFetchProfiles";
 import { useFetchPosts } from "src/libs/useFetchPosts";
@@ -11,7 +10,7 @@ import { LikeButton } from "src/components/post/LikeButton";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { useFetchFavorits } from "src/libs/useFetchFavorits";
 
-export const User: React.VFC<definitions["profiles"]> = () => {
+export const User = () => {
   const { profile, fetchProfiles } = useFetchProfiles();
   const { posts, setPosts, fetchPosts } = useFetchPosts();
   const [username, setUsername] = useState(profile?.name);
@@ -67,7 +66,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
   };
 
   return (
-    <div className="m-auto space-y-8">
+    <div className="mt-5 space-y-8 bg-gray-100">
       <div className="flex justify-around">
         <div>
           {profile?.avatar ? (
@@ -77,11 +76,14 @@ export const User: React.VFC<definitions["profiles"]> = () => {
           )}
         </div>
         <div>
-          <div className=" flex justify-around mb-5">
-            <button className=" px-2 text-gray-400 border-2 border-gray-300" onClick={signOut}>
+          <div className="flex justify-around mb-5">
+            <button className=" px-2 text-gray-400 rounded-lg border-2 border-gray-300" onClick={signOut}>
               Sign Out
             </button>
-            <button className="px-2 text-gray-500 bg-gray-200 border-2 border-gray-300" onClick={HandleUpdateProfile}>
+            <button
+              className="px-2 text-gray-500 bg-gray-200 rounded-lg border-2 border-gray-300"
+              onClick={HandleUpdateProfile}
+            >
               Update
             </button>
           </div>
@@ -94,7 +96,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
             type="text"
             id="name"
             defaultValue={profile?.name}
-            className="w-full text-center border-b-2"
+            className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
@@ -110,7 +112,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
           type="text"
           id="wedding_hall"
           defaultValue={profile?.wedding_hall}
-          className="m-auto w-full text-center border-b-2"
+          className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg"
           onChange={(e) => {
             setWeddingHall(e.target.value);
           }}
@@ -124,12 +126,12 @@ export const User: React.VFC<definitions["profiles"]> = () => {
         <textarea
           id="description"
           defaultValue={profile?.description}
-          className="w-full text-center border-b-2"
+          className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg"
           onChange={(e) => {
             setDescription(e.target.value);
           }}
         />
-        <p className="mt-28">キロクを探す</p>
+        <p className="mt-20">キロクを探す</p>
         <PersonalSearch userId={user?.id as string} setPosts={setPosts} />
         {posts.length === 0 ? (
           <p className="mb-10">キロクがありません。</p>
@@ -137,7 +139,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
           posts.map((post) => {
             return (
               <div key={post.id} className="mb-10 bg-gray-200">
-                <div className=" flex min-w-max bg-gray-300">
+                <div className="flex justify-between min-w-max bg-gray-300">
                   <a className="flex">
                     <div className="my-1 mx-2">
                       {profile?.avatar ? (
@@ -148,7 +150,7 @@ export const User: React.VFC<definitions["profiles"]> = () => {
                     </div>
                     <div className="flex items-center mx-3 text-sm">{profile?.name}</div>
                   </a>
-                  <div className="flex items-center">
+                  <div className="flex items-center space-x-4">
                     <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
                     <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
                   </div>

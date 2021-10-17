@@ -6,7 +6,7 @@ import { SearchDrop } from "src/components/search/SearchDrop";
 
 export const LoginedHeader: React.VFC = () => {
   return (
-    <div className="flex z-50 justify-between py-1 pt-3 bg-white bg-opacity-50">
+    <div className="flex z-50 justify-between py-1 pt-3 bg-gray-100 bg-opacity-50">
       <SearchDrop />
       <Link href="/" passHref>
         <a>

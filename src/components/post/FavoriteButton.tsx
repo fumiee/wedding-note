@@ -57,12 +57,12 @@ export const FavoriteButton: VFC<Props> = (props) => {
   }, [props.favorits, props.postId]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center pr-3">
       <button onClick={hadleClick}>
         {isFavorite ? (
-          <IoBookmark size={22} color={"#3465E2"} className="opacity-90" />
+          <IoBookmark size={23} color={"#5A5A5A"} className="opacity-90" />
         ) : (
-          <IoBookmarkOutline size={25} color={"#5A5A5A"} />
+          <IoBookmarkOutline size={23} color={"#5A5A5A"} />
         )}
       </button>
     </div>

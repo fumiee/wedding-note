@@ -68,7 +68,7 @@ export const Favorite = () => {
         {posts?.map((post) => {
           return (
             <div key={post.post_id} className="mb-10 bg-gray-100">
-              <div className=" flex min-w-max bg-gray-200">
+              <div className="flex justify-between min-w-max bg-gray-200">
                 <Link href={`/${post.post.user.user_id}`}>
                   <a className="flex my-1 mx-2">
                     {post.post.user.avatar ? (
@@ -79,7 +79,7 @@ export const Favorite = () => {
                     <div className="flex items-center mx-3 text-sm">{post.post.user.name}</div>
                   </a>
                 </Link>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-4">
                   <LikeButton postId={post.post_id} likes={likes} setLikes={setLikes} />
                   <FavoriteButton postId={post.post_id} favorits={favorits} setFavorits={setFavorits} />
                 </div>

@@ -68,7 +68,7 @@ const PostSearch = () => {
         posts.map((post) => {
           return (
             <div key={post.id} className="mb-10 bg-gray-200">
-              <div className=" flex min-w-max bg-gray-300">
+              <div className="flex justify-between min-w-max bg-gray-300">
                 <Link href={`/${post.user.user_id}`}>
                   <a className="flex my-1 mx-2">
                     {post.user.avatar ? (
@@ -79,7 +79,7 @@ const PostSearch = () => {
                     <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
                   </a>
                 </Link>
-                <div className="flex items-center">
+                <div className="flex items-center space-x-4">
                   <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
                   <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
                 </div>
