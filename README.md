@@ -1,4 +1,4 @@
-# WEDDING-NOTE
+# wedding-note
 
 結婚式を考えている人に向けたSNS
 
@@ -19,3 +19,10 @@
 - いいね、お気に入り機能
 - todoリスト
 - コメント（開発中）
+
+## 使用技術
+- Next.js
+- typescript
+- tailwindcss
+- supabase
+- HeadlessUI
