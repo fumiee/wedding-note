@@ -30,7 +30,7 @@ const ITEM = [
 export const Contents: React.VFC = () => {
   return (
     <div className="m-auto text-center">
-      <p className="mt-8 text-4xl font-semibold">What's note?</p>
+      <p className="mt-8 text-4xl font-semibold">What is note?</p>
       <p className="mb-20">{"wedding noteでできること"}</p>
       {ITEM.map((item) => {
         return (

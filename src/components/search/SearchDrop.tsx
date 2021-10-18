@@ -1,5 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 import { Menu } from "@headlessui/react";
+import Link from "next/link";
 
 export const SearchDrop = () => {
   return (
@@ -14,27 +15,27 @@ export const SearchDrop = () => {
           <Menu.Item>
             {({ active }) => {
               return (
-                <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/postSearch">
-                  キロク
-                </a>
+                <Link href="/postSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>キロク</a>
+                </Link>
               );
             }}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => {
               return (
-                <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/nameSearch">
-                  ナマエ
-                </a>
+                <Link href="/nameSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>ナマエ</a>
+                </Link>
               );
             }}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => {
               return (
-                <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`} href="/whSearch">
-                  結婚式場
-                </a>
+                <Link href="/whSearch">
+                  <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>結婚式場</a>
+                </Link>
               );
             }}
           </Menu.Item>
