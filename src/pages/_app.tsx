@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 import { Layout } from "src/components/layout/Layout";
@@ -7,8 +6,8 @@ import { supabase } from "src/libs/supabase";
 import type { Session } from "@supabase/supabase-js";
 import { Toaster } from "react-hot-toast";
 
-// eslint-disable-next-line func-style
-function MyApp({ Component, pageProps }: AppProps) {
+// eslint-disable-next-line react/destructuring-assignment
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
@@ -38,5 +37,5 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
     </div>
   );
-}
+};
 export default MyApp;
