@@ -4,9 +4,14 @@ import { GuestLayout } from "./layout/GuestLayout";
 
 export const Auth: React.VFC = () => {
   const handleLogin = async () => {
-    await supabase.auth.signIn({
-      provider: "google",
-    });
+    await supabase.auth.signIn(
+      {
+        provider: "google",
+      },
+      {
+        redirectTo: process.env.NEXT_PUBLIC_SUPABASE_LOGINED_URL,
+      }
+    );
   };
   return (
     <GuestLayout>
