@@ -1,21 +1,23 @@
+import Link from "next/link";
+
 type ITEM = {
   label: string;
   link: string;
 };
 
 const ITEM = [
-  { label: "利用規約", link: "" },
-  { label: "プライバシーポリシー", link: "" },
+  { label: "退会する", link: "/withdrawal" },
+  // { label: "プライバシーポリシー", link: "" },
 ];
 
 export const Footer: React.VFC = () => {
   return (
-    <div className="p-10 text-gray-100 bg-gray-500">
+    <div className="p-10 text-xs text-gray-100 bg-gray-500">
       {ITEM.map((item) => {
         return (
-          <div key={item.label} className="mb-5">
-            {item.label}
-          </div>
+          <Link href={item.link} key={item.label}>
+            <div className="mb-5">{item.label}</div>
+          </Link>
         );
       })}
       <footer>

@@ -27,6 +27,7 @@ export const Favorite = () => {
   const [posts, setPosts] = useState<FavPost[]>();
 
   const fetch = async () => {
+    const user = supabase.auth.user();
     try {
       const res: PostgrestResponse<FavPost> = await supabase
         .from("favorits")
@@ -43,6 +44,7 @@ export const Favorite = () => {
         )
           `
         )
+        .eq("user_id", user?.id)
         .order("created_at", { ascending: false });
       if (res.error) throw res.error;
       setPosts(res.data);
