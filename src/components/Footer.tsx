@@ -16,12 +16,12 @@ export const Footer: React.VFC = () => {
       {ITEM.map((item) => {
         return (
           <Link href={item.link} key={item.label}>
-            <div className="mb-5">{item.label}</div>
+            <a>{item.label}</a>
           </Link>
         );
       })}
       <footer>
-        <div>©2021 yorimaru</div>
+        <div className="mt-5">©2021 yorimaru</div>
       </footer>
     </div>
   );
