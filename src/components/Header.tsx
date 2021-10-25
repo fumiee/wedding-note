@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineUser } from "react-icons/ai";
 import { SearchDrop } from "src/components/search/SearchDrop";
-
 import logo from "/public/logo.svg";
 
 export const Header: React.VFC = () => {
