@@ -9,10 +9,10 @@ export const TextEditor = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className=" flex justify-between mx-4">
+      <div className="flex justify-between px-5 mx-4">
         <Link href="/">
           <a>
-            <IoMdArrowBack size={35} color={"#5A5A5A"} className="mt-5" />
+            <IoMdArrowBack size={35} color={"#5A5A5A"} className="my-3" />
           </a>
         </Link>
         <HandlePost postText={postText} setPostText={setPostText} />

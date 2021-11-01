@@ -10,6 +10,7 @@ type HandlePostProps = {
 export const HandlePost: VFC<HandlePostProps> = (props) => {
   const router = useRouter();
   const handleClick = async () => {
+    if (props.setPostText.length < 0) return;
     try {
       const user = supabase.auth.user();
       const updates = {
@@ -30,9 +31,9 @@ export const HandlePost: VFC<HandlePostProps> = (props) => {
     }
   };
   return (
-    <div className="flex items-center mt-5">
+    <div className="flex items-center">
       <button onClick={handleClick}>
-        <a className="block m-auto w-32 h-6 text-white bg-gray-500 rounded-lg">投稿</a>
+        <a className="flex justify-center py-2 w-32 tracking-widest text-white bg-gray-400 rounded-xl">投稿</a>
       </button>
     </div>
   );
