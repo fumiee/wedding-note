@@ -2,8 +2,8 @@ import type { Dispatch, SetStateAction, VFC } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import type { Post } from "src/components/post/Posts";
 import { supabase } from "src/libs/supabase";
+import type { Post } from "src/pages/postSearch";
 
 type PersonalSearchProps = {
   userId: string;

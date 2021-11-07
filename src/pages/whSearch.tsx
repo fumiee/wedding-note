@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
-import type { Post } from "src/components/post/Posts";
 import { SearchForm } from "src/components/search/SearchForm";
 import { SearchUserDisplay } from "src/components/layout/SearchUserDisplay";
 import { supabase } from "src/libs/supabase";
+import type { Post } from "./postSearch";
 
 const WhSearch = () => {
   const [posts, setPosts] = useState<Post[]>([]);

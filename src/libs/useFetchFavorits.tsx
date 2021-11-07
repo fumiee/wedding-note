@@ -4,10 +4,9 @@ import type { definitions } from "src/types/supabase";
 
 export const useFetchFavorits = () => {
   const [favorits, setFavorits] = useState<string[]>([]);
+  const user = supabase.auth.user();
 
   const fetchFavorits = async () => {
-    const user = supabase.auth.user();
-
     try {
       const res = await supabase.from<definitions["favorits"]>("favorits").select("post_id").eq("user_id", user?.id);
       if (res.error) throw res.error;
@@ -20,5 +19,5 @@ export const useFetchFavorits = () => {
       console.error("error", error);
     }
   };
-  return { favorits, setFavorits, fetchFavorits };
+  return { user, favorits, setFavorits, fetchFavorits };
 };

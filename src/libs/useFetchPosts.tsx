@@ -1,4 +1,4 @@
-import type { Post } from "src/components/post/Posts";
+import type { Post } from "src/pages/postSearch";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 import { useState } from "react";
 import { supabase } from "src/libs/supabase";
