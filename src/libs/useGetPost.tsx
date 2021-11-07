@@ -1,7 +1,7 @@
-import { supabase } from "src/libs/supabase";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
+import type { Post } from "src/pages/postSearch";
+import { supabase } from "src/libs/supabase";
 import { useState } from "react";
-import type { Post } from "src/components/post/Posts";
 
 export const useGetPost = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -23,7 +23,7 @@ export const useGetPost = () => {
           `
         )
         .order("created_at", { ascending: false })
-        .range(0, 5);
+        .range(0, 4);
       if (res.error) throw res.error;
       setPosts(res.data);
     } catch (error) {
