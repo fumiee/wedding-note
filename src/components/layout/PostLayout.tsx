@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { VFC } from "react";
-import type { Post } from "src/components/post/PostList";
+import type { Post } from "src/pages/postSearch";
 import type { definitions } from "src/types/supabase";
 
 type Props = {
