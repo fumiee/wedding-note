@@ -17,9 +17,9 @@ const Profile = () => {
   const { likes, setLikes, fetchLikes } = useFetchLikes();
   const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
   useEffect(() => {
-    if (!router.query.profile) return;
-    fetchProfiles(router.query.profile as string);
-    fetchPosts(router.query.profile as string);
+    if (!router.query.id) return;
+    fetchProfiles(router.query.id as string);
+    fetchPosts(router.query.id as string);
     fetchLikes();
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,7 +62,7 @@ const Profile = () => {
         </div>
         <p className="mt-20">{profile?.name}さんのキロクで検索</p>
 
-        <PersonalSearch userId={router.query.profile as string} setPosts={setPosts} />
+        <PersonalSearch userId={router.query.id as string} setPosts={setPosts} />
         {posts.length === 0 ? (
           <p className="mb-10">キロクがありません。</p>
         ) : (
