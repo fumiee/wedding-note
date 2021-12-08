@@ -668,7 +668,7 @@ export interface definitions {
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id?: string;
+    user_id: string;
     created_at: string;
     updated_at: string;
     /**

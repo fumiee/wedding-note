@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabase";
+import type { definitions } from "types/supabase";
 import { BsPencil } from "react-icons/bs";
 import { AddTaskForm } from "src/components/todo/AddTaskForm";
 import { HandleDone } from "src/components/todo/HandleDone";
 
-type List = Pick<definitions["todos"], "id" | "group_id" | "todo" | "is_done">;
+export type List = Pick<definitions["todos"], "id" | "group_id" | "todo" | "is_done">;
 
 export const Todo: React.VFC = () => {
   const [lists, setLists] = useState<List[]>([]);

@@ -2,13 +2,13 @@ import { useCallback, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { LikeButton } from "src/components/post/LikeButton";
 import { FavoriteButton } from "src/components/post/FavoriteButton";
+import type { definitions } from "src/types";
 
 export type Post = {
   createdAt: definitions["posts"]["created_at"];

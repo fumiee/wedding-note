@@ -8,7 +8,7 @@ import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { EditPageLinkButton } from "./EditPageLinkButton";
 import { useGetPost } from "src/libs/useGetPost";
-import { CommentButton } from "./CommentButton";
+import { CommentButton } from "../comment/CommentButton";
 
 export const PostList = () => {
   const { fetchPosts, posts } = useGetPost(); //postsは表示する記事
@@ -21,7 +21,6 @@ export const PostList = () => {
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div className="min-h-screen bg-gray-300">
       <div>
