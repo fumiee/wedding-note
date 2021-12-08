@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-types": "npx openapi-typescript https://fmpzxbqnsugvbikouwaj.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU4OTkwMywiZXhwIjoxOTQ2MTY1OTAzfQ.byHvtTRS6qcY7h04gbPTQkFAsTEnk0KJZuGzU0IBuA4 --output types/database/index.ts"
   },
   "prettier": {
     "printWidth": 120

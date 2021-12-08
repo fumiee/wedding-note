@@ -21,7 +21,6 @@ export const PostList = () => {
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div className="min-h-screen bg-gray-300">
       <div>
