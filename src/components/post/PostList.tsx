@@ -11,12 +11,12 @@ import { useGetPost } from "src/libs/useGetPost";
 import { CommentButton } from "./CommentButton";
 
 export const PostList = () => {
-  const { fetchposts, posts } = useGetPost(); //postsは表示する記事
+  const { fetchPosts, posts } = useGetPost(); //postsは表示する記事
   const { likes, setLikes, fetchLikes } = useFetchLikes(); //自分がいいねしたpost_idを全部取得
   const { user, favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
 
   useEffect(() => {
-    fetchposts();
+    fetchPosts();
     fetchLikes();
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
