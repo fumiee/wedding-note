@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "openapi-typescript  \"$(grep NEXT_PUBLIC_SUPABASE_URL .env.local | cut -d '=' -f2)/rest/v1/?apikey=$(grep NEXT_PUBLIC_SUPABASE_KEY .env.local | cut -d '=' -f2)\" --output types/supabase.ts"
   },
   "prettier": {
     "printWidth": 120
@@ -37,6 +38,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-tailwindcss": "^1.14.3",
+    "openapi-typescript": "^4.4.0",
     "postcss": "^8.3.6",
     "prettier": "^2.4.0",
     "tailwindcss": "^2.2.9",

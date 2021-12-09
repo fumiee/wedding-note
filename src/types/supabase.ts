@@ -17,11 +17,11 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.comments.id"];
+          user_id?: parameters["rowFilter.comments.user_id"];
           created_at?: parameters["rowFilter.comments.created_at"];
           updated_at?: parameters["rowFilter.comments.updated_at"];
-          user_id?: parameters["rowFilter.comments.user_id"];
-          text?: parameters["rowFilter.comments.text"];
           post_id?: parameters["rowFilter.comments.post_id"];
+          text?: parameters["rowFilter.comments.text"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -73,11 +73,11 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.comments.id"];
+          user_id?: parameters["rowFilter.comments.user_id"];
           created_at?: parameters["rowFilter.comments.created_at"];
           updated_at?: parameters["rowFilter.comments.updated_at"];
-          user_id?: parameters["rowFilter.comments.user_id"];
-          text?: parameters["rowFilter.comments.text"];
           post_id?: parameters["rowFilter.comments.post_id"];
+          text?: parameters["rowFilter.comments.text"];
         };
         header: {
           /** Preference */
@@ -93,11 +93,11 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.comments.id"];
+          user_id?: parameters["rowFilter.comments.user_id"];
           created_at?: parameters["rowFilter.comments.created_at"];
           updated_at?: parameters["rowFilter.comments.updated_at"];
-          user_id?: parameters["rowFilter.comments.user_id"];
-          text?: parameters["rowFilter.comments.text"];
           post_id?: parameters["rowFilter.comments.post_id"];
+          text?: parameters["rowFilter.comments.text"];
         };
         body: {
           /** comments */
@@ -119,9 +119,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.favorits.id"];
+          user_id?: parameters["rowFilter.favorits.user_id"];
           created_at?: parameters["rowFilter.favorits.created_at"];
           updated_at?: parameters["rowFilter.favorits.updated_at"];
-          user_id?: parameters["rowFilter.favorits.user_id"];
           post_id?: parameters["rowFilter.favorits.post_id"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -174,9 +174,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.favorits.id"];
+          user_id?: parameters["rowFilter.favorits.user_id"];
           created_at?: parameters["rowFilter.favorits.created_at"];
           updated_at?: parameters["rowFilter.favorits.updated_at"];
-          user_id?: parameters["rowFilter.favorits.user_id"];
           post_id?: parameters["rowFilter.favorits.post_id"];
         };
         header: {
@@ -193,9 +193,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.favorits.id"];
+          user_id?: parameters["rowFilter.favorits.user_id"];
           created_at?: parameters["rowFilter.favorits.created_at"];
           updated_at?: parameters["rowFilter.favorits.updated_at"];
-          user_id?: parameters["rowFilter.favorits.user_id"];
           post_id?: parameters["rowFilter.favorits.post_id"];
         };
         body: {
@@ -218,9 +218,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.likes.id"];
+          user_id?: parameters["rowFilter.likes.user_id"];
           created_at?: parameters["rowFilter.likes.created_at"];
           updated_at?: parameters["rowFilter.likes.updated_at"];
-          user_id?: parameters["rowFilter.likes.user_id"];
           post_id?: parameters["rowFilter.likes.post_id"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -273,9 +273,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.likes.id"];
+          user_id?: parameters["rowFilter.likes.user_id"];
           created_at?: parameters["rowFilter.likes.created_at"];
           updated_at?: parameters["rowFilter.likes.updated_at"];
-          user_id?: parameters["rowFilter.likes.user_id"];
           post_id?: parameters["rowFilter.likes.post_id"];
         };
         header: {
@@ -292,9 +292,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.likes.id"];
+          user_id?: parameters["rowFilter.likes.user_id"];
           created_at?: parameters["rowFilter.likes.created_at"];
           updated_at?: parameters["rowFilter.likes.updated_at"];
-          user_id?: parameters["rowFilter.likes.user_id"];
           post_id?: parameters["rowFilter.likes.post_id"];
         };
         body: {
@@ -317,9 +317,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.posts.id"];
+          user_id?: parameters["rowFilter.posts.user_id"];
           created_at?: parameters["rowFilter.posts.created_at"];
           updated_at?: parameters["rowFilter.posts.updated_at"];
-          user_id?: parameters["rowFilter.posts.user_id"];
           text?: parameters["rowFilter.posts.text"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -372,9 +372,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.posts.id"];
+          user_id?: parameters["rowFilter.posts.user_id"];
           created_at?: parameters["rowFilter.posts.created_at"];
           updated_at?: parameters["rowFilter.posts.updated_at"];
-          user_id?: parameters["rowFilter.posts.user_id"];
           text?: parameters["rowFilter.posts.text"];
         };
         header: {
@@ -391,9 +391,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.posts.id"];
+          user_id?: parameters["rowFilter.posts.user_id"];
           created_at?: parameters["rowFilter.posts.created_at"];
           updated_at?: parameters["rowFilter.posts.updated_at"];
-          user_id?: parameters["rowFilter.posts.user_id"];
           text?: parameters["rowFilter.posts.text"];
         };
         body: {
@@ -516,113 +516,14 @@ export interface paths {
       };
     };
   };
-  "/tags": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.tags.id"];
-          created_at?: parameters["rowFilter.tags.created_at"];
-          updated_at?: parameters["rowFilter.tags.updated_at"];
-          post_id?: parameters["rowFilter.tags.post_id"];
-          tag?: parameters["rowFilter.tags.tag"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["tags"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** tags */
-          tags?: definitions["tags"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.tags.id"];
-          created_at?: parameters["rowFilter.tags.created_at"];
-          updated_at?: parameters["rowFilter.tags.updated_at"];
-          post_id?: parameters["rowFilter.tags.post_id"];
-          tag?: parameters["rowFilter.tags.tag"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.tags.id"];
-          created_at?: parameters["rowFilter.tags.created_at"];
-          updated_at?: parameters["rowFilter.tags.updated_at"];
-          post_id?: parameters["rowFilter.tags.post_id"];
-          tag?: parameters["rowFilter.tags.tag"];
-        };
-        body: {
-          /** tags */
-          tags?: definitions["tags"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
   "/todos": {
     get: {
       parameters: {
         query: {
           id?: parameters["rowFilter.todos.id"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
-          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
@@ -677,9 +578,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.todos.id"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
-          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
@@ -698,9 +599,9 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.todos.id"];
+          user_id?: parameters["rowFilter.todos.user_id"];
           created_at?: parameters["rowFilter.todos.created_at"];
           updated_at?: parameters["rowFilter.todos.updated_at"];
-          user_id?: parameters["rowFilter.todos.user_id"];
           group_id?: parameters["rowFilter.todos.group_id"];
           todo?: parameters["rowFilter.todos.todo"];
           is_done?: parameters["rowFilter.todos.is_done"];
@@ -763,19 +664,19 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    created_at?: string;
-    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id: string;
-    text: string;
+    user_id?: string;
+    created_at: string;
+    updated_at: string;
     /**
      * Note:
      * This is a Foreign Key to `posts.id`.<fk table='posts' column='id'/>
      */
     post_id: string;
+    text: string;
   };
   favorits: {
     /**
@@ -783,13 +684,13 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    created_at?: string;
-    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id: string;
+    user_id?: string;
+    created_at: string;
+    updated_at: string;
     /**
      * Note:
      * This is a Foreign Key to `posts.id`.<fk table='posts' column='id'/>
@@ -802,13 +703,13 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    created_at?: string;
-    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id: string;
+    user_id?: string;
+    created_at: string;
+    updated_at: string;
     /**
      * Note:
      * This is a Foreign Key to `posts.id`.<fk table='posts' column='id'/>
@@ -821,13 +722,13 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    created_at?: string;
-    updated_at?: string;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id: string;
+    user_id?: string;
+    created_at: string;
+    updated_at: string;
     text: string;
   };
   profiles: {
@@ -836,42 +737,27 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     user_id: string;
-    created_at?: string;
-    updated_at?: string;
+    created_at: string;
+    updated_at: string;
     name?: string;
     avatar?: string;
     wedding_hall?: string;
     description?: string;
-  };
-  tags: {
-    /**
-     * Note:
-     * This is a Primary Key.<pk/>
-     */
-    id: string;
-    created_at?: string;
-    updated_at?: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `posts.id`.<fk table='posts' column='id'/>
-     */
-    post_id: string;
-    tag: string;
   };
   todos: {
     /**
      * Note:
      * This is a Primary Key.<pk/>
      */
-    id: string;
-    created_at?: string;
-    updated_at?: string;
+    id: number;
     /**
      * Note:
      * This is a Foreign Key to `profiles.user_id`.<fk table='profiles' column='user_id'/>
      */
-    user_id: string;
-    group_id?: string;
+    user_id?: string;
+    created_at: string;
+    updated_at: string;
+    group_id?: number;
     todo: string;
     is_done?: boolean;
   };
@@ -901,31 +787,31 @@ export interface parameters {
   /** comments */
   "body.comments": definitions["comments"];
   "rowFilter.comments.id": string;
+  "rowFilter.comments.user_id": string;
   "rowFilter.comments.created_at": string;
   "rowFilter.comments.updated_at": string;
-  "rowFilter.comments.user_id": string;
-  "rowFilter.comments.text": string;
   "rowFilter.comments.post_id": string;
+  "rowFilter.comments.text": string;
   /** favorits */
   "body.favorits": definitions["favorits"];
   "rowFilter.favorits.id": string;
+  "rowFilter.favorits.user_id": string;
   "rowFilter.favorits.created_at": string;
   "rowFilter.favorits.updated_at": string;
-  "rowFilter.favorits.user_id": string;
   "rowFilter.favorits.post_id": string;
   /** likes */
   "body.likes": definitions["likes"];
   "rowFilter.likes.id": string;
+  "rowFilter.likes.user_id": string;
   "rowFilter.likes.created_at": string;
   "rowFilter.likes.updated_at": string;
-  "rowFilter.likes.user_id": string;
   "rowFilter.likes.post_id": string;
   /** posts */
   "body.posts": definitions["posts"];
   "rowFilter.posts.id": string;
+  "rowFilter.posts.user_id": string;
   "rowFilter.posts.created_at": string;
   "rowFilter.posts.updated_at": string;
-  "rowFilter.posts.user_id": string;
   "rowFilter.posts.text": string;
   /** profiles */
   "body.profiles": definitions["profiles"];
@@ -936,20 +822,17 @@ export interface parameters {
   "rowFilter.profiles.avatar": string;
   "rowFilter.profiles.wedding_hall": string;
   "rowFilter.profiles.description": string;
-  /** tags */
-  "body.tags": definitions["tags"];
-  "rowFilter.tags.id": string;
-  "rowFilter.tags.created_at": string;
-  "rowFilter.tags.updated_at": string;
-  "rowFilter.tags.post_id": string;
-  "rowFilter.tags.tag": string;
   /** todos */
   "body.todos": definitions["todos"];
   "rowFilter.todos.id": string;
+  "rowFilter.todos.user_id": string;
   "rowFilter.todos.created_at": string;
   "rowFilter.todos.updated_at": string;
-  "rowFilter.todos.user_id": string;
   "rowFilter.todos.group_id": string;
   "rowFilter.todos.todo": string;
   "rowFilter.todos.is_done": string;
 }
+
+export interface operations {}
+
+export interface external {}

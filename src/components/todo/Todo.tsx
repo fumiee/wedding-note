@@ -34,7 +34,7 @@ export const Todo: React.VFC = () => {
   }, [fetchTodos]);
 
   const handleDelete = useCallback(
-    async (id: string) => {
+    async (id: number) => {
       try {
         await supabase.from("todos").delete().eq("id", id);
         const filter = lists.filter((list) => {

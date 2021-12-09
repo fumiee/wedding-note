@@ -5,7 +5,7 @@ import { IoCheckboxOutline } from "react-icons/io5";
 import { supabase } from "src/libs/supabase";
 
 type Props = {
-  listId: string;
+  listId: number;
   isDone: boolean;
 };
 
