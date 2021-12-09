@@ -1,9 +1,9 @@
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
+import type { Session } from "@supabase/supabase-js";
 import { Layout } from "src/components/layout/Layout";
 import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { Session } from "@supabase/supabase-js";
 import { Toaster } from "react-hot-toast";
 
 // eslint-disable-next-line react/destructuring-assignment
@@ -18,12 +18,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return () => {
       authListener?.unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       <Layout>
-        <Component {...pageProps} session={session} />
+        <div>
+          <Component {...pageProps} session={session} />
+        </div>
       </Layout>
       <Toaster
         toastOptions={{

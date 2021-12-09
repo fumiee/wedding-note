@@ -1,36 +1,18 @@
-import { useEffect } from "react";
-import type { definitions } from "src/types/supabase";
-import { AiOutlinePlus } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
-import { useGetPost } from "src/libs/useGetPost";
+import { useEffect } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
 import { LikeButton } from "src/components/post/LikeButton";
 import { FavoriteButton } from "src/components/post/FavoriteButton";
 import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { useFetchLikes } from "src/libs/useFetchLikes";
+import { EditPageLinkButton } from "./EditPageLinkButton";
+import { useGetPost } from "src/libs/useGetPost";
 
-export type Post = {
-  createdAt: definitions["posts"]["created_at"];
-  text: definitions["posts"]["text"];
-  id: definitions["posts"]["id"];
-  user: {
-    name: definitions["profiles"]["name"];
-    avatar: definitions["profiles"]["avatar"];
-    user_id: definitions["profiles"]["user_id"];
-    wedding_hall?: definitions["profiles"]["wedding_hall"];
-    description?: definitions["profiles"]["description"];
-  };
-  name: definitions["profiles"]["name"];
-  avatar: definitions["profiles"]["avatar"];
-  user_id: definitions["profiles"]["user_id"];
-  wedding_hall?: definitions["profiles"]["wedding_hall"];
-  description?: definitions["profiles"]["description"];
-};
-
-export const Posts = () => {
+export const PostList = () => {
   const { fetchposts, posts } = useGetPost(); //postsは表示する記事
   const { likes, setLikes, fetchLikes } = useFetchLikes(); //自分がいいねしたpost_idを全部取得
-  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
+  const { user, favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
 
   useEffect(() => {
     fetchposts();
@@ -42,21 +24,22 @@ export const Posts = () => {
   return (
     <div className="min-h-screen bg-gray-300">
       <div>
-        {posts?.map((post) => {
+        {posts.map((post) => {
           return (
             <div key={post.id} className="mb-10 bg-gray-100">
               <div className="flex justify-between min-w-max bg-gray-300">
-                <Link href={`/${post.user.user_id}`}>
+                <Link href={`/${post.user?.user_id}`}>
                   <a className="flex my-1 mx-2">
-                    {post.user.avatar ? (
+                    {post.user?.avatar ? (
                       <Image src={post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
                     ) : (
-                      <div className="bg-gray-100 rounded-full sm:w-28 sm:h-28" />
+                      <div className="w-11 h-11 bg-gray-100 rounded-full" />
                     )}
-                    <div className="flex items-center mx-3 text-sm">{post.user.name}</div>
+                    <div className="flex items-center mx-3 text-sm">{post.user?.name}</div>
                   </a>
                 </Link>
                 <div className="flex items-center space-x-4">
+                  {post.user?.user_id === user?.id ? <EditPageLinkButton id={post.id} /> : <div className="w-6"></div>}
                   <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
                   <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
                 </div>

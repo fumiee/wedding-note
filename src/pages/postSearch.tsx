@@ -10,7 +10,7 @@ import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { LikeButton } from "src/components/post/LikeButton";
 import { FavoriteButton } from "src/components/post/FavoriteButton";
 
-type Post = {
+export type Post = {
   createdAt: definitions["posts"]["created_at"];
   text: definitions["posts"]["text"];
   id: definitions["posts"]["id"];

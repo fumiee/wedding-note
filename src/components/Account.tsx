@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { Todo } from "./todo/Todo";
 import { IoBookmarkOutline, IoCheckboxOutline, IoHomeOutline } from "react-icons/io5";
-import { Posts } from "src/components/post/Posts";
+import { PostList } from "src/components/post/PostList";
 import { Favorite } from "src/components/Favorite";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 
@@ -16,17 +16,15 @@ export const Account: React.VFC = () => {
               <IoHomeOutline size={25} color={"#5A5A5A"} className="m-auto" />
             </Tab>
             <Tab className=" w-2/6 h-8 bg-gray-200">
-              {" "}
               <IoBookmarkOutline size={25} color={"#5A5A5A"} className="m-auto" />
             </Tab>
             <Tab className=" w-2/6 h-8 bg-gray-100">
-              {" "}
               <IoCheckboxOutline size={25} color={"#5A5A5A"} className="m-auto" />
             </Tab>
           </div>
           <Tab.Panels>
             <Tab.Panel>
-              <Posts />
+              <PostList />
             </Tab.Panel>
 
             <Tab.Panel>
