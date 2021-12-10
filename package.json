@@ -7,11 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-<<<<<<< HEAD
     "generate": "openapi-typescript  \"$(grep NEXT_PUBLIC_SUPABASE_URL .env.local | cut -d '=' -f2)/rest/v1/?apikey=$(grep NEXT_PUBLIC_SUPABASE_KEY .env.local | cut -d '=' -f2)\" --output types/supabase.ts"
-=======
-    "update-types": "npx openapi-typescript https://fmpzxbqnsugvbikouwaj.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU4OTkwMywiZXhwIjoxOTQ2MTY1OTAzfQ.byHvtTRS6qcY7h04gbPTQkFAsTEnk0KJZuGzU0IBuA4 --output types/database/index.ts"
->>>>>>> 45dd83cf56bcffef564051f38d06a81a196ebe71
   },
   "prettier": {
     "printWidth": 120
