@@ -8,7 +8,11 @@ import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { EditPageLinkButton } from "./EditPageLinkButton";
 import { useGetPost } from "src/libs/useGetPost";
+<<<<<<< HEAD
 import { CommentButton } from "../comment/CommentButton";
+=======
+import { CommentButton } from "./CommentButton";
+>>>>>>> 45dd83cf56bcffef564051f38d06a81a196ebe71
 
 export const PostList = () => {
   const { fetchPosts, posts } = useGetPost(); //postsは表示する記事
