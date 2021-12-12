@@ -10,7 +10,7 @@ type HandlePostProps = {
 export const HandlePost: VFC<HandlePostProps> = (props) => {
   const router = useRouter();
   const handleClick = async () => {
-    if (props.setPostText.length < 0) return;
+    if (props.postText.length < 0) return;
     try {
       const user = supabase.auth.user();
       const updates = {

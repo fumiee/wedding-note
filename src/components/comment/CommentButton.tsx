@@ -1,10 +1,24 @@
-import { useEffect } from "react";
+import type { VFC } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BiMessageRounded, BiMessageRoundedDots } from "react-icons/bi";
-import { useGetComment } from "./useGetComment";
+// import type { PostgrestResponse } from "@supabase/postgrest-js";
+import { supabase } from "src/libs/supabase";
 
-export const CommentButton = (props: any) => {
-  const { comments, fetchComments } = useGetComment(props.postId);
+type Props = {
+  postId: string;
+};
+
+export const CommentButton: VFC<Props> = (props) => {
+  const [comments, setComments] = useState([]);
+  const fetchComments = async () => {
+    try {
+      await supabase.from("comments").select("post_id").eq("post_id", props.postId);
+      setComments("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     fetchComments();
@@ -13,7 +27,7 @@ export const CommentButton = (props: any) => {
 
   return (
     <div className="flex justify-center">
-      <Link href={`comment/${props.postId}`}>
+      <Link href={`${props.postId}`}>
         <a>
           {comments.length === 0 ? (
             <BiMessageRounded size={22} color={"#6B7280"} />

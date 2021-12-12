@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { HandleAddComment } from "src/components/comment/HandleAddComment";
 import { useGetComment } from "src/components/comment/useGetComment";
 
 const Comment = () => {
@@ -10,20 +11,19 @@ const Comment = () => {
     if (router.query.id === undefined) return;
     fetchComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.id]);
+  }, [comments, router.query.id]);
   return (
-    <div>
+    <div className="mt-14">
+      <HandleAddComment postId={router.query.id as string} />
       {comments?.length === 0
         ? "コメントがありません"
         : comments.map((comment) => {
             return (
-              <div key={comment.id}>
+              <div key={comment.id} className="mb-10 bg-gray-100">
                 <p>{comment.text}</p>
-                <p>{comment.user_id}</p>
               </div>
             );
           })}
-      {/* 開発中です🙇‍♂️ */}
     </div>
   );
 };
