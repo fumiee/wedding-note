@@ -15,6 +15,13 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/types/supabese.tx", "src/components/post"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/types/supabese.tx",
+    "src/components/post",
+    "src/pages/[id]/[id]"
+  ],
   "exclude": ["node_modules"]
 }

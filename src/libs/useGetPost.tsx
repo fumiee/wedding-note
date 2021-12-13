@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useGetPost = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
-  const fetchposts = async () => {
+  const fetchPosts = async () => {
     try {
       const res: PostgrestResponse<Post> = await supabase
         .from("posts")
@@ -30,5 +30,5 @@ export const useGetPost = () => {
       console.error("error", error);
     }
   };
-  return { fetchposts, posts };
+  return { fetchPosts, posts };
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabase";
+import type { definitions } from "types/supabase";
 
 export const useFetchProfiles = () => {
   const [profile, setProfile] = useState<definitions["profiles"]>();

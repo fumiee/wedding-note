@@ -3,11 +3,11 @@ import { useGetPost } from "src/libs/useGetPost";
 import Image from "next/image";
 
 export const LatestPosts = () => {
-  const { fetchposts, posts } = useGetPost();
+  const { fetchPosts, posts } = useGetPost();
 
   useEffect(() => {
-    fetchposts();
-  }, [fetchposts]);
+    fetchPosts();
+  }, [fetchPosts]);
   return (
     <div className="mb-16">
       <p className="m-16 text-xl font-bold tracking-widest text-gray-400">みんなのキロク</p>

@@ -2,9 +2,8 @@ import type { Dispatch, SetStateAction, VFC } from "react";
 import { useCallback, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import { IoAddOutline } from "react-icons/io5";
-import type { definitions } from "src/types/supabase";
+import type { List } from "./Todo";
 
-type List = Pick<definitions["todos"], "id" | "group_id" | "todo">;
 type AddTaskFormProps = {
   setErrorText: Dispatch<SetStateAction<string>>;
   setLists: Dispatch<SetStateAction<List[]>>;

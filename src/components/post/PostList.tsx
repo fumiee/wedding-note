@@ -8,19 +8,19 @@ import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { EditPageLinkButton } from "./EditPageLinkButton";
 import { useGetPost } from "src/libs/useGetPost";
+import { CommentButton } from "../comment/CommentButton";
 
 export const PostList = () => {
-  const { fetchposts, posts } = useGetPost(); //postsは表示する記事
+  const { fetchPosts, posts } = useGetPost(); //postsは表示する記事
   const { likes, setLikes, fetchLikes } = useFetchLikes(); //自分がいいねしたpost_idを全部取得
   const { user, favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
 
   useEffect(() => {
-    fetchposts();
+    fetchPosts();
     fetchLikes();
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div className="min-h-screen bg-gray-300">
       <div>
@@ -28,7 +28,7 @@ export const PostList = () => {
           return (
             <div key={post.id} className="mb-10 bg-gray-100">
               <div className="flex justify-between min-w-max bg-gray-300">
-                <Link href={`/${post.user?.user_id}`}>
+                <Link href={`profile/${post.user?.user_id}`}>
                   <a className="flex my-1 mx-2">
                     {post.user?.avatar ? (
                       <Image src={post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
@@ -40,6 +40,7 @@ export const PostList = () => {
                 </Link>
                 <div className="flex items-center space-x-4">
                   {post.user?.user_id === user?.id ? <EditPageLinkButton id={post.id} /> : <div className="w-6"></div>}
+                  <CommentButton postId={post.id} />
                   <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
                   <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
                 </div>

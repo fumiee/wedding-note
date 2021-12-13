@@ -6,7 +6,7 @@ import { LikeButton } from "src/components/post/LikeButton";
 import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { useFetchLikes } from "src/libs/useFetchLikes";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabase";
+import type { definitions } from "types/supabase";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 
 type FavPost = {
