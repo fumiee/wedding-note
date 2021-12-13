@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { VFC } from "react";
-import type { definitions } from "src/types/supabase";
+import type { definitions } from "types/supabase";
 
 type Props = {
   profile: definitions["profiles"];

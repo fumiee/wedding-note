@@ -8,7 +8,7 @@ import { useFetchLikes } from "src/libs/useFetchLikes";
 import { useFetchFavorits } from "src/libs/useFetchFavorits";
 import { LikeButton } from "src/components/post/LikeButton";
 import { FavoriteButton } from "src/components/post/FavoriteButton";
-import type { definitions } from "src/types";
+import type { definitions } from "types/supabase";
 
 export type Post = {
   createdAt: definitions["posts"]["created_at"];
