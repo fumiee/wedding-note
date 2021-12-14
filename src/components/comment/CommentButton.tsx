@@ -1,6 +1,7 @@
 import type { VFC } from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import type { PostgrestResponse } from "@supabase/postgrest-js";
 import { BiMessageRounded, BiMessageRoundedDots } from "react-icons/bi";
 import { supabase } from "src/libs/supabase";
 
@@ -9,10 +10,15 @@ type Props = {
 };
 
 export const CommentButton: VFC<Props> = (props) => {
-  const [comments] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const fetchComments = async () => {
     try {
-      await supabase.from("comments").select("post_id").eq("post_id", props.postId);
+      const res: PostgrestResponse<Comment> = await supabase
+        .from("comments")
+        .select("text")
+        .eq("post_id", props.postId);
+      if (res.error) throw res.error;
+      setComments(res.data);
     } catch (error) {
       console.error(error);
     }
