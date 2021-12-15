@@ -4,11 +4,11 @@ import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import { useFetchLikes } from "src/libs/useFetchLikes";
-import { useFetchFavorits } from "src/libs/useFetchFavorits";
-import { LikeButton } from "src/components/post/LikeButton";
-import { FavoriteButton } from "src/components/post/FavoriteButton";
-import type { definitions } from "types/supabase";
+import { useFetchLikes } from "src/hooks/useFetchLikes";
+import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import type { definitions } from "src/types/supabaseTypes";
 
 export type Post = {
   createdAt: definitions["posts"]["created_at"];

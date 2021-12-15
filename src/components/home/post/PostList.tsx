@@ -2,13 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { LikeButton } from "src/components/post/LikeButton";
-import { FavoriteButton } from "src/components/post/FavoriteButton";
-import { useFetchFavorits } from "src/libs/useFetchFavorits";
-import { useFetchLikes } from "src/libs/useFetchLikes";
-import { EditPageLinkButton } from "./EditPageLinkButton";
-import { useGetPost } from "src/libs/useGetPost";
-import { CommentButton } from "../comment/CommentButton";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchLikes } from "src/hooks/useFetchLikes";
+import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
+import { CommentButton } from "src/components/home/comment/CommentButton";
+import { useGetPost } from "src/hooks/useGetPost";
 
 export const PostList = () => {
   const { fetchPosts, posts } = useGetPost(); //postsは表示する記事

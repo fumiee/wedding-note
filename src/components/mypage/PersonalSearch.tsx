@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { supabase } from "src/libs/supabase";
-import type { Post } from "src/pages/postSearch";
+import type { Post } from "src/pages/search/postSearch";
 
 type PersonalSearchProps = {
   userId: string;

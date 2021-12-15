@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "types/supabase";
+import type { definitions } from "src/types/supabaseTypes";
 import { BsPencil } from "react-icons/bs";
 import { AddTaskForm } from "src/components/todo/AddTaskForm";
 import { HandleDone } from "src/components/todo/HandleDone";

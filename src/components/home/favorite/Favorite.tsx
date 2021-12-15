@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FavoriteButton } from "src/components/post/FavoriteButton";
-import { LikeButton } from "src/components/post/LikeButton";
-import { useFetchFavorits } from "src/libs/useFetchFavorits";
-import { useFetchLikes } from "src/libs/useFetchLikes";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "types/supabase";
+import type { definitions } from "src/types/supabaseTypes";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 
 type FavPost = {

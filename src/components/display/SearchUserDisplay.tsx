@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { VFC } from "react";
-import type { Post } from "src/pages/postSearch";
+import type { Post } from "src/pages/search/postSearch";
 
 type Props = {
   posts: Post[];

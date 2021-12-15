@@ -19,8 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/types/supabese.tx",
-    "src/components/post",
+    "types/supabeseTypes.ts",
+    "src/components/home",
     "src/pages/[id]/[id]"
   ],
   "exclude": ["node_modules"]

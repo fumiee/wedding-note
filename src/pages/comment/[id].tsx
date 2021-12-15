@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { HandleAddComment } from "src/components/comment/HandleAddComment";
-import { useGetComment } from "src/components/comment/useGetComment";
+import { HandleAddComment } from "src/components/home/comment/HandleAddComment";
+import { useGetComment } from "src/hooks/useGetComment";
 import Image from "next/image";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 
