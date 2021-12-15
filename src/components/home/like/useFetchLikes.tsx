@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "types/supabase";
+import type { definitions } from "src/types/supabaseTypes";
 
 export const useFetchLikes = () => {
   const [likes, setLikes] = useState<string[]>([]);

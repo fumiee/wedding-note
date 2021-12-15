@@ -1,4 +1,4 @@
-import { TextEditor } from "src/components/post/TextEditor";
+import { TextEditor } from "src/components/home/post/TextEditor";
 
 const Compose = () => {
   return (

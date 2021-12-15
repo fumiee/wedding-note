@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
-import { PersonalSearch } from "src/components/PersonalSearch";
-import { useFetchPosts } from "src/libs/useFetchPosts";
-import { useFetchProfiles } from "src/libs/useFetchProfiles";
+import { PersonalSearch } from "src/components/mypage/PersonalSearch";
+import { useFetchProfiles } from "src/components/mypage/useFetchProfiles";
 import Image from "next/image";
-import { LikeButton } from "src/components/post/LikeButton";
-import { FavoriteButton } from "src/components/post/FavoriteButton";
-import { useFetchLikes } from "src/libs/useFetchLikes";
-import { useFetchFavorits } from "src/libs/useFetchFavorits";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import { useFetchLikes } from "src/components/home/like/useFetchLikes";
+import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchPosts } from "src/components/home/post/useFetchPosts";
 
 const Profile = () => {
   const router = useRouter();

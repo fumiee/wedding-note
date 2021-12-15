@@ -1,7 +1,7 @@
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 import { useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "types/supabase";
+import type { definitions } from "src/types/supabaseTypes";
 
 export type Comment = {
   createdAt: definitions["comments"]["created_at"];

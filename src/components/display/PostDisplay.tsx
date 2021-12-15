@@ -1,14 +1,14 @@
 import Image from "next/image";
 import type { VFC } from "react";
-import type { Post } from "src/pages/postSearch";
-import type { definitions } from "types/supabase";
+import type { Post } from "src/pages/search/postSearch";
+import type { definitions } from "src/types/supabaseTypes";
 
 type Props = {
   posts: Post[];
   profile: definitions["profiles"];
 };
 
-export const PostLayout: VFC<Props> = (props) => {
+export const PostDisplay: VFC<Props> = (props) => {
   return (
     <div>
       {props.posts.length === 0 ? (

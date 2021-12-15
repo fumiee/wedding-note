@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
-import { PersonalSearch } from "src/components/PersonalSearch";
-import { useFetchProfiles } from "src/libs/useFetchProfiles";
-import { useFetchPosts } from "src/libs/useFetchPosts";
+import { PersonalSearch } from "src/components/mypage/PersonalSearch";
+import { useFetchProfiles } from "src/components/mypage/useFetchProfiles";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { FavoriteButton } from "src/components/post/FavoriteButton";
-import { LikeButton } from "src/components/post/LikeButton";
-import { useFetchLikes } from "src/libs/useFetchLikes";
-import { useFetchFavorits } from "src/libs/useFetchFavorits";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { useFetchLikes } from "src/components/home/like/useFetchLikes";
+import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchPosts } from "../home/post/useFetchPosts";
 
 export const User = () => {
   const { profile, fetchProfiles } = useFetchProfiles();

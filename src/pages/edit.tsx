@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { EditDelete } from "src/components/post/EditDelite";
+import { EditDelete } from "src/components/home/edit/EditDelite";
 
 const Edit = () => {
   const router = useRouter();

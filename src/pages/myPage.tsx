@@ -1,4 +1,4 @@
-import { User } from "src/components/User";
+import { User } from "src/components/mypage/User";
 import type { Session } from "@supabase/supabase-js";
 import { Auth } from "src/components/Auth";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";

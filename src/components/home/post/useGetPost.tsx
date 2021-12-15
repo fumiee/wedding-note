@@ -1,22 +1,34 @@
-import type { Post } from "src/pages/postSearch";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
-import { useState } from "react";
+import type { Post } from "src/pages/search/postSearch";
 import { supabase } from "src/libs/supabase";
+import { useState } from "react";
 
-export const useFetchPosts = () => {
+export const useGetPost = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const fetchPosts = async (query: string) => {
+
+  const fetchPosts = async () => {
     try {
       const res: PostgrestResponse<Post> = await supabase
         .from("posts")
-        .select("text,id")
+        .select(
+          `
+          createdAt:created_at,
+          text,
+          id,
+          user:posts_user_id_fkey(
+            name,
+            avatar,
+            user_id
+          )
+          `
+        )
         .order("created_at", { ascending: false })
-        .eq("user_id", query);
+        .range(0, 4);
       if (res.error) throw res.error;
       setPosts(res.data);
     } catch (error) {
       console.error("error", error);
     }
   };
-  return { posts, setPosts, fetchPosts };
+  return { fetchPosts, posts };
 };

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import type { VFC } from "react";
-import type { definitions } from "types/supabase";
+import type { definitions } from "src/types/supabaseTypes";
 
 type Props = {
   profile: definitions["profiles"];
 };
 
-export const ProfileLayout: VFC<Props> = (props) => {
+export const ProfileDisplay: VFC<Props> = (props) => {
   return (
     <div className="m-auto space-y-8">
       <div className="flex justify-around">
