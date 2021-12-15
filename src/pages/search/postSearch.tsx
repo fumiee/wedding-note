@@ -4,7 +4,7 @@ import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import { useFetchLikes } from "src/components/home/like/useFetchLikes";
+import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";

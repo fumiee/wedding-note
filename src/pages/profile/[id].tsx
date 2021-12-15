@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { PersonalSearch } from "src/components/mypage/PersonalSearch";
-import { useFetchProfiles } from "src/components/mypage/useFetchProfiles";
+import { useFetchProfiles } from "src/hooks/useFetchProfiles";
 import Image from "next/image";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
-import { useFetchLikes } from "src/components/home/like/useFetchLikes";
+import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
-import { useFetchPosts } from "src/components/home/post/useFetchPosts";
+import { useFetchPosts } from "src/hooks/useFetchPosts";
 
 const Profile = () => {
   const router = useRouter();
