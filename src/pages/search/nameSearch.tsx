@@ -3,7 +3,7 @@ import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { SearchUserDisplay } from "src/components/display/SearchUserDisplay";
 import { supabase } from "src/libs/supabase";
-import type { Post } from "./postSearch";
+import type { Post } from "src/pages/search/postSearch";
 
 const NameSearch = () => {
   const [posts, setPosts] = useState<Post[]>([]);

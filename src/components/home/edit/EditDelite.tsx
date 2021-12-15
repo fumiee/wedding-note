@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { supabase } from "src/libs/supabase";
 import { Dialog, Transition } from "@headlessui/react";
-import type { EditPageButtonProps } from "./EditPageLinkButton";
+import type { EditPageButtonProps } from "src/components/home/edit/EditPageLinkButton";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 

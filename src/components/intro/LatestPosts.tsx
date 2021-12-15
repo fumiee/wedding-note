@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import { useGetPost } from "../../hooks/useGetPost";
+import { useGetPost } from "src/hooks/useGetPost";
 
 export const LatestPosts = () => {
   const { fetchPosts, posts } = useGetPost();

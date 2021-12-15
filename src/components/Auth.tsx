@@ -1,6 +1,6 @@
 import { supabase } from "src/libs/supabase";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { GuestLayout } from "./layout/GuestLayout";
+import { GuestLayout } from "src/components/layout/GuestLayout";
 
 export const Auth: React.VFC = () => {
   const handleLogin = async () => {

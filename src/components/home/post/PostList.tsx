@@ -6,9 +6,9 @@ import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { EditPageLinkButton } from "../edit/EditPageLinkButton";
-import { CommentButton } from "../comment/CommentButton";
-import { useGetPost } from "../../../hooks/useGetPost";
+import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
+import { CommentButton } from "src/components/home/comment/CommentButton";
+import { useGetPost } from "src/hooks/useGetPost";
 
 export const PostList = () => {
   const { fetchPosts, posts } = useGetPost(); //postsは表示する記事

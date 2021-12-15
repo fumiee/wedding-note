@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import { Todo } from "./todo/Todo";
+import { Todo } from "src/components/todo/Todo";
 import { IoBookmarkOutline, IoCheckboxOutline, IoHomeOutline } from "react-icons/io5";
 import { PostList } from "src/components/home/post/PostList";
 import { Favorite } from "src/components/home/favorite/Favorite";
