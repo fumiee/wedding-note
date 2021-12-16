@@ -1,67 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabaseTypes";
-import type { PostgrestResponse } from "@supabase/postgrest-js";
 
 //お気に入り一覧ページに表示するpost情報の取得
-
-type FavPost = {
-  post_id: definitions["favorits"]["post_id"];
-  post: {
-    text: definitions["posts"]["text"];
-    user: {
-      name: definitions["profiles"]["name"];
-      avatar: definitions["profiles"]["avatar"];
-      user_id: definitions["profiles"]["user_id"];
-    };
-  };
-};
-
 export const FavoriteList = () => {
   const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { favorits, setFavorits } = useFetchFavorits();
-  const [posts, setPosts] = useState<FavPost[]>();
-
-  const fetch = async () => {
-    const user = supabase.auth.user();
-    try {
-      const res: PostgrestResponse<FavPost> = await supabase
-        .from("favorits")
-        .select(
-          `
-        post_id,
-        post:favorits_post_id_fkey(
-          text,
-          user:posts_user_id_fkey(
-            name,
-            avatar,
-            user_id
-          )
-        )
-          `
-        )
-        .eq("user_id", user?.id)
-        .order("created_at", { ascending: false });
-      if (res.error) throw res.error;
-      setPosts(res.data);
-      setFavorits(
-        res.data.map((d) => {
-          return d.post_id;
-        })
-      );
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
+  const { favorits, setFavorits, fetchFavorits, posts } = useFetchFavorits();
 
   useEffect(() => {
-    fetch();
+    fetchFavorits();
     fetchLikes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
