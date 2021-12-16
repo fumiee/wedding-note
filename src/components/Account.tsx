@@ -2,7 +2,7 @@ import { Tab } from "@headlessui/react";
 import { Todo } from "src/components/todo/Todo";
 import { IoBookmarkOutline, IoCheckboxOutline, IoHomeOutline } from "react-icons/io5";
 import { PostList } from "src/components/home/post/PostList";
-import { Favorite } from "src/components/home/favorite/Favorite";
+import { FavoriteList } from "src/components/home/favorite/FavoriteList";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 
 export const Account: React.VFC = () => {
@@ -28,7 +28,7 @@ export const Account: React.VFC = () => {
             </Tab.Panel>
 
             <Tab.Panel>
-              <Favorite />
+              <FavoriteList />
             </Tab.Panel>
 
             <Tab.Panel>

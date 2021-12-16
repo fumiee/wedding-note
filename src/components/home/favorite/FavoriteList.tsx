@@ -9,6 +9,8 @@ import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
 import type { PostgrestResponse } from "@supabase/postgrest-js";
 
+//お気に入り一覧ページに表示するpost情報の取得
+
 type FavPost = {
   post_id: definitions["favorits"]["post_id"];
   post: {
@@ -21,7 +23,7 @@ type FavPost = {
   };
 };
 
-export const Favorite = () => {
+export const FavoriteList = () => {
   const { likes, setLikes, fetchLikes } = useFetchLikes();
   const { favorits, setFavorits } = useFetchFavorits();
   const [posts, setPosts] = useState<FavPost[]>();
