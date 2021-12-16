@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchPosts } from "src/hooks/useFetchPosts";
 
 export const User = () => {

@@ -5,7 +5,7 @@ import { supabase } from "src/libs/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import type { definitions } from "src/types/supabaseTypes";

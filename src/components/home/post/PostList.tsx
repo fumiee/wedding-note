@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
-import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
 import { CommentButton } from "src/components/home/comment/CommentButton";
@@ -21,6 +21,7 @@ export const PostList = () => {
     fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="min-h-screen bg-gray-300">
       <div>

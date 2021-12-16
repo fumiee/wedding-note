@@ -7,7 +7,7 @@ import Image from "next/image";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { useFetchFavorits } from "src/components/home/favorite/useFetchFavorits";
+import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchPosts } from "src/hooks/useFetchPosts";
 
 const Profile = () => {

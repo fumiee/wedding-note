@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
 
+//ユーザーがお気に入りに入れているpost_idを取得する
 export const useFetchFavorits = () => {
   const [favorits, setFavorits] = useState<string[]>([]);
   const user = supabase.auth.user();
