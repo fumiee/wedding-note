@@ -1,63 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { LikeButton } from "src/components/home/like/LikeButton";
-import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
-import { useFetchFavorits } from "src/hooks/useFetchFavorits";
-import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
-import { CommentButton } from "src/components/home/comment/CommentButton";
+import { PostDisplay } from "src/components/display/PostDisplay";
+import { useFetchLikeFav } from "src/hooks/useFetchLikeFav";
 import { useGetPost } from "src/hooks/useGetPost";
 
 export const PostList = () => {
-  const { fetchPosts, posts } = useGetPost(); //postsは表示する記事
-  const { likes, setLikes, fetchLikes } = useFetchLikes(); //自分がいいねしたpost_idを全部取得
-  const { user, favorits, setFavorits, fetchFavorits } = useFetchFavorits(); //自分がお気に入りしたpost_idを全部取得
+  const { likes, setLikes, userId, favoritePostsArray, setFavoritePostsArray } = useFetchLikeFav();
+  const { fetchPosts, posts } = useGetPost();
 
   useEffect(() => {
     fetchPosts();
-    fetchLikes();
-    fetchFavorits();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-300">
-      <div>
-        {posts.map((post) => {
-          return (
-            <div key={post.id} className="mb-10 bg-gray-100">
-              <div className="flex justify-between min-w-max bg-gray-300">
-                <Link href={`profile/${post.user?.user_id}`}>
-                  <a className="flex my-1 mx-2">
-                    {post.user?.avatar ? (
-                      <Image src={post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
-                    ) : (
-                      <div className="w-11 h-11 bg-gray-100 rounded-full" />
-                    )}
-                    <div className="flex items-center mx-3 text-sm">{post.user?.name}</div>
-                  </a>
-                </Link>
-                <div className="flex items-center space-x-4">
-                  {post.user?.user_id === user?.id ? <EditPageLinkButton id={post.id} /> : <div className="w-6"></div>}
-                  <CommentButton postId={post.id} />
-                  <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
-                  <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
-                </div>
-              </div>
-              <details className="block whitespace-pre-wrap break-words">
-                <summary className="list-none">
-                  <div className="px-2 text-left">{post.text.substr(0, 75)}</div>
-                </summary>
-                {post.text.length > 67 ? (
-                  <div className="px-2 pb-1 text-left">{post.text.substr(75, 100000)}</div>
-                ) : null}
-              </details>
-            </div>
-          );
-        })}
-      </div>
+    <div>
+      <PostDisplay
+        posts={posts}
+        likes={likes}
+        setLikes={setLikes}
+        userId={userId}
+        favoritePostsArray={favoritePostsArray}
+        setFavoritePostsArray={setFavoritePostsArray}
+      />
       <div className="flex sticky bottom-2 justify-end mr-2">
         <Link href="/compose">
           <a className="bg-transparent">

@@ -1,47 +1,63 @@
 import Image from "next/image";
-import type { VFC } from "react";
+import Link from "next/link";
+import type { Dispatch, SetStateAction, VFC } from "react";
 import type { Post } from "src/pages/search/postSearch";
-import type { definitions } from "src/types/supabaseTypes";
+import { LikeButton } from "src/components/home/like/LikeButton";
+import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
+import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
+import { CommentButton } from "src/components/home/comment/CommentButton";
 
-type Props = {
+type PostDisplayProps = {
   posts: Post[];
-  profile: definitions["profiles"];
+  likes: string[];
+  setLikes: Dispatch<SetStateAction<string[]>>;
+  userId: string | undefined;
+  favoritePostsArray: string[];
+  setFavoritePostsArray: Dispatch<SetStateAction<string[]>>;
 };
 
-export const PostDisplay: VFC<Props> = (props) => {
+export const PostDisplay: VFC<PostDisplayProps> = (props) => {
   return (
-    <div>
-      {props.posts.length === 0 ? (
-        <p className="mb-10">キロクがありません。</p>
-      ) : (
-        props.posts.map((post) => {
+    <div className="min-h-screen bg-gray-300">
+      <div>
+        {props.posts.map((post) => {
           return (
-            <div key={post.id} className="mb-10 bg-gray-200">
-              <div className=" flex min-w-max bg-gray-300">
-                <a className="flex">
-                  <div className="my-1 mx-2">
-                    {props.profile.avatar ? (
-                      <Image src={props.profile.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
+            <div key={post.id} className="mb-10 bg-gray-100">
+              <div className="flex justify-between min-w-max bg-gray-300">
+                <Link href={`profile/${post.user?.user_id}`}>
+                  <a className="flex my-1 mx-2">
+                    {post.user?.avatar ? (
+                      <Image src={post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
                     ) : (
-                      <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
+                      <div className="w-11 h-11 bg-gray-100 rounded-full" />
                     )}
-                  </div>
-                  <div className="flex items-center mx-3 text-sm">{props.profile?.name}</div>
-                </a>
-                <div className="flex items-center">{/* <Like /> */}</div>
+                    <div className="flex items-center mx-3 text-sm">{post.user?.name}</div>
+                  </a>
+                </Link>
+                <div className="flex items-center space-x-4">
+                  {post.user?.user_id === props.userId ? (
+                    <EditPageLinkButton id={post.id} />
+                  ) : (
+                    <div className="w-6"></div>
+                  )}
+                  <CommentButton postId={post.id} />
+                  <LikeButton postId={post.id} likes={props.likes} setLikes={props.setLikes} />
+                  <FavoriteButton
+                    postId={post.id}
+                    favoritePostsArray={props.favoritePostsArray}
+                    setFavoritePostsArray={props.setFavoritePostsArray}
+                  />
+                </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">
                 <summary className="list-none">
-                  <div className="px-2 text-left">{post.text.substr(0, 75)}</div>
+                  <div className="px-2 text-left">{post.text}</div>
                 </summary>
-                {post.text.length > 75 ? (
-                  <div className="px-2 pb-1 text-left">{post.text.substr(75, 100000)}</div>
-                ) : null}
               </details>
             </div>
           );
-        })
-      )}
+        })}
+      </div>
     </div>
   );
 };
