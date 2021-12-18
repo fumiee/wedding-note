@@ -29,16 +29,17 @@ export const useFetchFavorits = () => {
         .from("favorits")
         .select(
           `
-        post_id,
-        post:favorits_post_id_fkey(
-          text,
-          user:posts_user_id_fkey(
-            name,
-            avatar,
-            user_id
+          id,  
+          post_id,
+          post:favorits_post_id_fkey(
+            text,
+            user:posts_user_id_fkey(
+              name,
+              avatar,
+              user_id
+            )
           )
-        )
-        `
+          `
         )
         .eq("user_id", userId);
       if (res.error) throw res.error;

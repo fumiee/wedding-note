@@ -37,7 +37,7 @@ export const useGetComment = (props: Props) => {
             name,
             avatar
             )
-            `
+          `
         )
         .order("created_at", { ascending: false })
         .eq("post_id", props.postId);
