@@ -8,14 +8,14 @@ import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { useFetchFavorits } from "src/hooks/useFetchFavorits";
-import { useFetchPosts } from "src/hooks/useFetchPosts";
+import { useFetchUserPosts } from "src/hooks/useFetchUserPosts";
 
 const Profile = () => {
   const router = useRouter();
   const { profile, fetchProfiles } = useFetchProfiles();
-  const { posts, setPosts, fetchPosts } = useFetchPosts();
+  const { posts, setPosts, fetchPosts } = useFetchUserPosts();
   const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
+  const { favoritePostsArray, setFavoritePostsArray, fetchFavorits } = useFetchFavorits();
   useEffect(() => {
     if (!router.query.id) return;
     fetchProfiles(router.query.id as string);
@@ -82,7 +82,11 @@ const Profile = () => {
                   </a>
                   <div className="flex items-center space-x-4">
                     <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
-                    <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
+                    <FavoriteButton
+                      postId={post.id}
+                      favoritePostsArray={favoritePostsArray}
+                      setFavoritePostsArray={setFavoritePostsArray}
+                    />
                   </div>
                 </div>
                 <details className="block whitespace-pre-wrap break-words">

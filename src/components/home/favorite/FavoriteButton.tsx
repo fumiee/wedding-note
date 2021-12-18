@@ -5,8 +5,8 @@ import { supabase } from "src/libs/supabase";
 
 type Props = {
   postId: string;
-  favorits: string[];
-  setFavorits: Dispatch<SetStateAction<string[]>>;
+  favoritePostsArray: string[];
+  setFavoritePostsArray: Dispatch<SetStateAction<string[]>>;
 };
 
 export const FavoriteButton: VFC<Props> = (props) => {
@@ -16,8 +16,8 @@ export const FavoriteButton: VFC<Props> = (props) => {
   const updateDisKeep = async () => {
     try {
       await supabase.from("favorits").delete().eq("post_id", props.postId).eq("user_id", user?.id);
-      props.setFavorits(
-        props.favorits.filter((fav) => {
+      props.setFavoritePostsArray(
+        props.favoritePostsArray.filter((fav) => {
           return props.postId !== fav;
         })
       );
@@ -40,7 +40,7 @@ export const FavoriteButton: VFC<Props> = (props) => {
       if (error) {
         throw error;
       }
-      props.setFavorits([...props.favorits, props.postId]);
+      props.setFavoritePostsArray([...props.favoritePostsArray, props.postId]);
     } catch (error) {
       console.error("error", error);
     }
@@ -51,10 +51,10 @@ export const FavoriteButton: VFC<Props> = (props) => {
   };
 
   const isFavorite = useMemo(() => {
-    return props.favorits.some((fav) => {
+    return props.favoritePostsArray.some((fav) => {
       return props.postId === fav;
     });
-  }, [props.favorits, props.postId]);
+  }, [props.favoritePostsArray, props.postId]);
 
   return (
     <div className="flex justify-center pr-3">

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
 
-type FavPost = {
+export type FavPost = {
+  id: definitions["posts"]["id"];
   post_id: definitions["favorits"]["post_id"];
   post: {
     text: definitions["posts"]["text"];
@@ -14,13 +15,13 @@ type FavPost = {
   };
 };
 
-//posts:ユーザーがお気に入りに入れている投稿一覧
-//favorits:ユーザーがお気に入りに入れている投稿のpost_idを配列にしたもの
+//favoritePosts:ユーザーがお気に入りに入れている投稿情報
+//favoritePostsArray:ユーザーがお気に入りに入れている投稿のpost_idのみを配列にしたもの
 export const useFetchFavorits = () => {
-  const [favorits, setFavorits] = useState<string[]>([]);
-  const [posts, setPosts] = useState<FavPost[]>([]);
+  const [favoritePostsArray, setFavoritePostsArray] = useState<string[]>([]);
+  const [favoritePosts, setFavoritePosts] = useState<FavPost[]>([]);
 
-  const user = supabase.auth.user();
+  const userId = supabase.auth.user()?.id;
 
   const fetchFavorits = async () => {
     try {
@@ -39,17 +40,17 @@ export const useFetchFavorits = () => {
         )
         `
         )
-        .eq("user_id", user?.id);
+        .eq("user_id", userId);
       if (res.error) throw res.error;
-      setFavorits(
+      setFavoritePostsArray(
         res.data.map((d) => {
           return d.post_id;
         })
       );
-      setPosts(res.data);
+      setFavoritePosts(res.data);
     } catch (error) {
       console.error("error", error);
     }
   };
-  return { user, favorits, setFavorits, fetchFavorits, posts };
+  return { userId, favoritePostsArray, setFavoritePostsArray, fetchFavorits, favoritePosts };
 };

@@ -28,7 +28,7 @@ export type Post = {
 const PostSearch = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { favorits, setFavorits, fetchFavorits } = useFetchFavorits();
+  const { favoritePostsArray, setFavoritePostsArray, fetchFavorits } = useFetchFavorits();
 
   const searchPosts = useCallback(
     async (word: string) => {
@@ -40,13 +40,13 @@ const PostSearch = () => {
           .from("posts")
           .select(
             `
-          createdAt:created_at,
-          text,
-          id,
-          user:posts_user_id_fkey(
-            name,
-            avatar,
-            user_id
+            createdAt:created_at,
+            text,
+            id,
+            user:posts_user_id_fkey(
+              name,
+              avatar,
+              user_id
             )
             `
           )
@@ -81,7 +81,11 @@ const PostSearch = () => {
                 </Link>
                 <div className="flex items-center space-x-4">
                   <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
-                  <FavoriteButton postId={post.id} favorits={favorits} setFavorits={setFavorits} />
+                  <FavoriteButton
+                    postId={post.id}
+                    favoritePostsArray={favoritePostsArray}
+                    setFavoritePostsArray={setFavoritePostsArray}
+                  />
                 </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">

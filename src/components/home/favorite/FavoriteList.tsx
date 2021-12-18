@@ -1,15 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { LikeButton } from "src/components/home/like/LikeButton";
+import { useEffect } from "react";
 import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchLikes } from "src/hooks/useFetchLikes";
+import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
+import { CommentButton } from "src/components/home/comment/CommentButton";
 
 //お気に入り一覧ページに表示するpost情報の取得
 export const FavoriteList = () => {
   const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { favorits, setFavorits, fetchFavorits, posts } = useFetchFavorits();
+  const { userId, favoritePostsArray, setFavoritePostsArray, fetchFavorits, favoritePosts } = useFetchFavorits();
 
   useEffect(() => {
     fetchFavorits();
@@ -20,7 +22,7 @@ export const FavoriteList = () => {
   return (
     <div className="min-h-screen bg-gray-200">
       <div>
-        {posts?.map((post) => {
+        {favoritePosts?.map((post) => {
           return (
             <div key={post.post_id} className="mb-10 bg-gray-100">
               <div className="flex justify-between min-w-max bg-gray-200">
@@ -35,8 +37,18 @@ export const FavoriteList = () => {
                   </a>
                 </Link>
                 <div className="flex items-center space-x-4">
+                  {post.post.user.user_id === userId ? (
+                    <EditPageLinkButton id={post.id} />
+                  ) : (
+                    <div className="w-6"></div>
+                  )}
+                  <CommentButton postId={post.id} />
                   <LikeButton postId={post.post_id} likes={likes} setLikes={setLikes} />
-                  <FavoriteButton postId={post.post_id} favorits={favorits} setFavorits={setFavorits} />
+                  <FavoriteButton
+                    postId={post.post_id}
+                    favoritePostsArray={favoritePostsArray}
+                    setFavoritePostsArray={setFavoritePostsArray}
+                  />
                 </div>
               </div>
               <details className="block whitespace-pre-wrap break-words">
