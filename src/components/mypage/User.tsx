@@ -136,6 +136,7 @@ export const User = () => {
             userId={userId}
             favoritePostsArray={favoritePostsArray}
             setFavoritePostsArray={setFavoritePostsArray}
+            needProfile={true}
           />
         )}
       </div>
