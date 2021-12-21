@@ -1,23 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { VFC } from "react";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { LikeButton } from "src/components/home/like/LikeButton";
-import { useEffect } from "react";
-import { useFetchFavorits } from "src/hooks/useFetchFavorits";
-import { useFetchLikes } from "src/hooks/useFetchLikes";
 import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
 import { CommentButton } from "src/components/home/comment/CommentButton";
+import { useFetchLikeFav } from "src/hooks/useFetchLikeFav";
 
 //お気に入り一覧ページに表示するpost情報の取得
-export const FavoriteList = () => {
-  const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { userId, favoritePostsArray, setFavoritePostsArray, fetchFavorits, favoritePosts } = useFetchFavorits();
-
-  useEffect(() => {
-    fetchFavorits();
-    fetchLikes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+export const FavoriteList: VFC = () => {
+  const { likes, setLikes, userId, favoritePostsArray, setFavoritePostsArray, favoritePosts } = useFetchLikeFav();
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -26,7 +18,7 @@ export const FavoriteList = () => {
           return (
             <div key={post.post_id} className="mb-10 bg-gray-100">
               <div className="flex justify-between min-w-max bg-gray-200">
-                <Link href={`/${post.post.user.user_id}`}>
+                <Link href={`profile/${post.post.user.user_id}`}>
                   <a className="flex my-1 mx-2">
                     {post.post.user.avatar ? (
                       <Image src={post.post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />

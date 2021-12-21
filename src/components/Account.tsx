@@ -1,3 +1,4 @@
+import type { VFC } from "react";
 import { Tab } from "@headlessui/react";
 import { Todo } from "src/components/todo/Todo";
 import { IoBookmarkOutline, IoCheckboxOutline, IoHomeOutline } from "react-icons/io5";
@@ -5,7 +6,7 @@ import { PostList } from "src/components/home/post/PostList";
 import { FavoriteList } from "src/components/home/favorite/FavoriteList";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 
-export const Account: React.VFC = () => {
+export const Account: VFC = () => {
   return (
     <LoginedLayout>
       {/* 以下 headless ui*/}

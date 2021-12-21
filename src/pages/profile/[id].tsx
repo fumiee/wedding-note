@@ -1,27 +1,23 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { PersonalSearch } from "src/components/mypage/PersonalSearch";
 import { useFetchProfiles } from "src/hooks/useFetchProfiles";
-import Image from "next/image";
-import { LikeButton } from "src/components/home/like/LikeButton";
-import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
-import { useFetchLikes } from "src/hooks/useFetchLikes";
-import { useFetchFavorits } from "src/hooks/useFetchFavorits";
 import { useFetchUserPosts } from "src/hooks/useFetchUserPosts";
+import { useFetchLikeFav } from "src/hooks/useFetchLikeFav";
+import { PostDisplay } from "src/components/display/PostDisplay";
 
 const Profile = () => {
   const router = useRouter();
   const { profile, fetchProfiles } = useFetchProfiles();
   const { posts, setPosts, fetchPosts } = useFetchUserPosts();
-  const { likes, setLikes, fetchLikes } = useFetchLikes();
-  const { favoritePostsArray, setFavoritePostsArray, fetchFavorits } = useFetchFavorits();
+  const { likes, setLikes, userId, favoritePostsArray, setFavoritePostsArray } = useFetchLikeFav();
+
   useEffect(() => {
     if (!router.query.id) return;
     fetchProfiles(router.query.id as string);
     fetchPosts(router.query.id as string);
-    fetchLikes();
-    fetchFavorits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
   return (
@@ -66,40 +62,15 @@ const Profile = () => {
         {posts.length === 0 ? (
           <p className="mb-10">キロクがありません。</p>
         ) : (
-          posts.map((post) => {
-            return (
-              <div key={post.id} className="mb-10 bg-gray-200">
-                <div className="flex justify-between min-w-max bg-gray-300">
-                  <a className="flex">
-                    <div className="my-1 mx-2">
-                      {profile?.avatar ? (
-                        <Image src={profile.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
-                      ) : (
-                        <div className="bg-gray-200 rounded-full sm:w-28 sm:h-28" />
-                      )}
-                    </div>
-                    <div className="flex items-center mx-3 text-sm">{profile?.name}</div>
-                  </a>
-                  <div className="flex items-center space-x-4">
-                    <LikeButton postId={post.id} likes={likes} setLikes={setLikes} />
-                    <FavoriteButton
-                      postId={post.id}
-                      favoritePostsArray={favoritePostsArray}
-                      setFavoritePostsArray={setFavoritePostsArray}
-                    />
-                  </div>
-                </div>
-                <details className="block whitespace-pre-wrap break-words">
-                  <summary className="list-none">
-                    <div className="px-2 text-left">{post.text.substr(0, 75)}</div>
-                  </summary>
-                  {post.text.length > 75 ? (
-                    <div className="px-2 pb-1 text-left">{post.text.substr(75, 100000)}</div>
-                  ) : null}
-                </details>
-              </div>
-            );
-          })
+          <PostDisplay
+            posts={posts}
+            likes={likes}
+            setLikes={setLikes}
+            userId={userId}
+            favoritePostsArray={favoritePostsArray}
+            setFavoritePostsArray={setFavoritePostsArray}
+            needProfile={false}
+          />
         )}
       </LoginedLayout>
     </div>

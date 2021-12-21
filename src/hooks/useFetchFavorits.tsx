@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
 
@@ -53,5 +53,8 @@ export const useFetchFavorits = () => {
       console.error("error", error);
     }
   };
-  return { userId, favoritePostsArray, setFavoritePostsArray, fetchFavorits, favoritePosts };
+  useEffect(() => {
+    fetchFavorits();
+  }, []);
+  return { userId, favoritePostsArray, setFavoritePostsArray, favoritePosts };
 };

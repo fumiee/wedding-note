@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
 
@@ -20,5 +20,8 @@ export const useFetchLikes = () => {
       console.error("error", error);
     }
   };
-  return { likes, setLikes, fetchLikes };
+  useEffect(() => {
+    fetchLikes();
+  }, []);
+  return { likes, setLikes };
 };
