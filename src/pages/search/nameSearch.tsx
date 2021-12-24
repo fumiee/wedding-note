@@ -11,7 +11,10 @@ const NameSearch: VFC = () => {
 
   const searchName = useCallback(async (word: string) => {
     try {
-      const res = await supabase.from("profiles").select("name,avatar,user_id,wedding_hall").like("name", `%${word}%`);
+      const res = await supabase
+        .from("profiles")
+        .select("name,avatar,userId:user_id,weddingHall:wedding_hall")
+        .like("name", `%${word}%`);
       if (res.error) throw res.error;
       setPosts(res.data);
     } catch (error) {

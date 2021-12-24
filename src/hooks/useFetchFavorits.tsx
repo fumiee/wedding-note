@@ -4,13 +4,13 @@ import type { definitions } from "src/types/supabaseTypes";
 
 export type FavPost = {
   id: definitions["posts"]["id"];
-  post_id: definitions["favorits"]["post_id"];
+  postId: definitions["favorits"]["post_id"];
   post: {
     text: definitions["posts"]["text"];
     user: {
       name: definitions["profiles"]["name"];
       avatar: definitions["profiles"]["avatar"];
-      user_id: definitions["profiles"]["user_id"];
+      userId: definitions["profiles"]["user_id"];
     };
   };
 };
@@ -30,13 +30,13 @@ export const useFetchFavorits = () => {
         .select(
           `
           id,  
-          post_id,
+          postId:post_id,
           post:favorits_post_id_fkey(
             text,
             user:posts_user_id_fkey(
               name,
               avatar,
-              user_id
+              userId:user_id
             )
           )
           `
@@ -45,7 +45,7 @@ export const useFetchFavorits = () => {
       if (res.error) throw res.error;
       setFavoritePostsArray(
         res.data.map((d) => {
-          return d.post_id;
+          return d.postId;
         })
       );
       setFavoritePosts(res.data);
@@ -55,6 +55,7 @@ export const useFetchFavorits = () => {
   };
   useEffect(() => {
     fetchFavorits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { userId, favoritePostsArray, setFavoritePostsArray, favoritePosts };
 };

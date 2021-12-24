@@ -20,6 +20,7 @@ const Profile = () => {
     fetchPosts(router.query.id as string);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
+
   return (
     <div className="bg-gray-100">
       <LoginedLayout>
@@ -41,7 +42,7 @@ const Profile = () => {
             <label htmlFor="wedding_hall" className="flex justify-start mb-5 ml-3 text-gray-400">
               wedding hall
             </label>
-            <p className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg">{profile?.wedding_hall}</p>
+            <p className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg">{profile?.weddingHall}</p>
           </div>
           <div>
             <label htmlFor="description" className="flex justify-start mb-5 ml-3 text-gray-400">
@@ -69,7 +70,6 @@ const Profile = () => {
             userId={userId}
             favoritePostsArray={favoritePostsArray}
             setFavoritePostsArray={setFavoritePostsArray}
-            needProfile={false}
           />
         )}
       </LoginedLayout>

@@ -18,7 +18,18 @@ export const PersonalSearch: VFC<PersonalSearchProps> = (props) => {
     try {
       const res = await supabase
         .from("posts")
-        .select("text,id")
+        .select(
+          `
+          createdAt:created_at,
+          id,
+          text,
+          user:posts_user_id_fkey(
+            name,
+            avatar,
+            userId:user_id
+          )
+          `
+        )
         .order("created_at", { ascending: false })
         .eq("user_id", props.userId)
         .like("text", `%${text}%`);
