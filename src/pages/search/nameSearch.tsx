@@ -1,11 +1,12 @@
+import type { Post } from "src/pages/search/postSearch";
+import type { VFC } from "react";
 import { useCallback, useState } from "react";
 import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { SearchUserDisplay } from "src/components/display/SearchUserDisplay";
 import { supabase } from "src/libs/supabase";
-import type { Post } from "src/pages/search/postSearch";
 
-const NameSearch = () => {
+const NameSearch: VFC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const searchName = useCallback(async (word: string) => {

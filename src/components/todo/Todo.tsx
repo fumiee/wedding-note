@@ -1,13 +1,19 @@
+import type { definitions } from "src/types/supabaseTypes";
+import type { VFC } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
-import type { definitions } from "src/types/supabaseTypes";
 import { BsPencil } from "react-icons/bs";
 import { AddTaskForm } from "src/components/todo/AddTaskForm";
 import { HandleDone } from "src/components/todo/HandleDone";
 
-export type List = Pick<definitions["todos"], "id" | "group_id" | "todo" | "is_done">;
+export type List = {
+  id: definitions["todos"]["id"];
+  groupId: definitions["todos"]["group_id"];
+  todo: definitions["todos"]["todo"];
+  isDone: definitions["todos"]["is_done"];
+};
 
-export const Todo: React.VFC = () => {
+export const Todo: VFC = () => {
   const [lists, setLists] = useState<List[]>([]);
   const [isShow, setIsShow] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -18,12 +24,12 @@ export const Todo: React.VFC = () => {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from<definitions["todos"]>("todos")
-        .select("id,group_id,todo,is_done")
+        .from("todos")
+        .select("id,groupId:group_id,todo,isDone:is_done")
         .eq("user_id", user.id);
       if (error) throw error;
       if (!data) throw new Error();
-      setLists(data);
+      setLists(data as List[]);
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +79,7 @@ export const Todo: React.VFC = () => {
           return (
             <div key={list.id} className=" flex justify-between m-4">
               <div className="flex">
-                <HandleDone listId={list.id} isDone={list.is_done as boolean} />
+                <HandleDone listId={list.id} isDone={list.isDone as boolean} />
                 {list.todo}
               </div>
               <button

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import toast from "react-hot-toast";
+import type { VFC } from "react";
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "src/libs/supabase";
 import { PersonalSearch } from "src/components/mypage/PersonalSearch";
@@ -8,13 +9,13 @@ import { useFetchUserPosts } from "src/hooks/useFetchUserPosts";
 import { useFetchLikeFav } from "src/hooks/useFetchLikeFav";
 import { PostDisplay } from "src/components/display/PostDisplay";
 
-export const User = () => {
+export const User: VFC = () => {
   const { profile, fetchProfiles } = useFetchProfiles();
   const { posts, setPosts, fetchPosts } = useFetchUserPosts();
   const { likes, setLikes, userId, favoritePostsArray, setFavoritePostsArray } = useFetchLikeFav();
   const [username, setUsername] = useState(profile?.name);
   const [avatar_url] = useState(profile?.avatar);
-  const [weddingHall, setWeddingHall] = useState(profile?.wedding_hall);
+  const [weddingHall, setWeddingHall] = useState(profile?.weddingHall);
   const [description, setDescription] = useState(profile?.description);
 
   useEffect(() => {
@@ -104,7 +105,7 @@ export const User = () => {
         <input
           type="text"
           id="wedding_hall"
-          defaultValue={profile?.wedding_hall}
+          defaultValue={profile?.weddingHall}
           className="py-1 m-auto w-11/12 text-center bg-gray-200 rounded-lg"
           onChange={(e) => {
             setWeddingHall(e.target.value);

@@ -1,8 +1,9 @@
+import Link from "next/link";
+import type { VFC } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Menu } from "@headlessui/react";
-import Link from "next/link";
 
-export const SearchDrop = () => {
+export const SearchDrop: VFC = () => {
   return (
     <div>
       <Menu>

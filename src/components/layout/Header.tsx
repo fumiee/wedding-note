@@ -1,10 +1,11 @@
+import type { VFC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineUser } from "react-icons/ai";
 import { SearchDrop } from "src/components/search/SearchDrop";
 import logo from "/public/logo.svg";
 
-export const Header: React.VFC = () => {
+export const Header: VFC = () => {
   return (
     <div className="flex z-50 justify-between py-1 pt-3 bg-white bg-opacity-50">
       <SearchDrop />

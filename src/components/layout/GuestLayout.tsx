@@ -1,3 +1,4 @@
+import type { VFC } from "react";
 import { Footer } from "src/components/layout/Footer";
 import { Header } from "src/components/layout/Header";
 
@@ -5,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const GuestLayout = (props: Props) => {
+export const GuestLayout: VFC<Props> = (props) => {
   return (
     <div className="flex z-50 flex-col min-h-screen">
       <div className="sticky top-0 z-50">

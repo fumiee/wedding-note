@@ -1,7 +1,8 @@
+import type { VFC } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "src/libs/supabase";
 
-export const UserDelete = () => {
+export const UserDelete: VFC = () => {
   const router = useRouter();
   const handleUserDelete = async () => {
     try {
