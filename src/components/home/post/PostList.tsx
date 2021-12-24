@@ -23,7 +23,6 @@ export const PostList = () => {
         userId={userId}
         favoritePostsArray={favoritePostsArray}
         setFavoritePostsArray={setFavoritePostsArray}
-        needProfile={true}
       />
       <div className="flex sticky bottom-2 justify-end mr-2">
         <Link href="/compose">

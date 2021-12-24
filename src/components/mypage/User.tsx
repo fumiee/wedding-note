@@ -137,7 +137,6 @@ export const User: VFC = () => {
             userId={userId}
             favoritePostsArray={favoritePostsArray}
             setFavoritePostsArray={setFavoritePostsArray}
-            needProfile={true}
           />
         )}
       </div>

@@ -16,9 +16,9 @@ export const FavoriteList: VFC = () => {
       <div>
         {favoritePosts?.map((post) => {
           return (
-            <div key={post.post_id} className="mb-10 bg-gray-100">
+            <div key={post.postId} className="mb-10 bg-gray-100">
               <div className="flex justify-between min-w-max bg-gray-200">
-                <Link href={`profile/${post.post.user.user_id}`}>
+                <Link href={`profile/${post.post.user.userId}`}>
                   <a className="flex my-1 mx-2">
                     {post.post.user.avatar ? (
                       <Image src={post.post.user.avatar} alt="avatar" height={45} width={45} className="rounded-full" />
@@ -29,15 +29,11 @@ export const FavoriteList: VFC = () => {
                   </a>
                 </Link>
                 <div className="flex items-center space-x-4">
-                  {post.post.user.user_id === userId ? (
-                    <EditPageLinkButton id={post.id} />
-                  ) : (
-                    <div className="w-6"></div>
-                  )}
+                  {post.post.user.userId === userId ? <EditPageLinkButton id={post.id} /> : <div className="w-6"></div>}
                   <CommentButton postId={post.id} />
-                  <LikeButton postId={post.post_id} likes={likes} setLikes={setLikes} />
+                  <LikeButton postId={post.postId} likes={likes} setLikes={setLikes} />
                   <FavoriteButton
-                    postId={post.post_id}
+                    postId={post.postId}
                     favoritePostsArray={favoritePostsArray}
                     setFavoritePostsArray={setFavoritePostsArray}
                   />
