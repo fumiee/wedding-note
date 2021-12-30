@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import type { VFC } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "src/libs/supabase";
@@ -14,12 +15,15 @@ export const UserDelete: VFC = () => {
           Authorization: `Bearer ${session.access_token}`,
         },
       });
-      if (!res.ok) return alert("エラーです");
+      if (!res.ok) {
+        throw new Error();
+      }
+      toast.success("退会しました");
+      supabase.auth.signOut();
       router.push("/top");
     } catch (error) {
-      console.error("error", error);
+      toast.error("エラーが発生しました");
     }
-    supabase.auth.signOut();
   };
   return (
     <button
