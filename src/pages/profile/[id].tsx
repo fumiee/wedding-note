@@ -48,13 +48,9 @@ const Profile = () => {
             <label htmlFor="description" className="flex justify-start mb-5 ml-3 text-gray-400">
               comment
             </label>
-            {profile?.description ? (
-              <p className="py-1 m-auto w-11/12 text-center whitespace-pre-wrap break-words bg-gray-200 rounded-lg">
-                {profile?.description}
-              </p>
-            ) : (
-              <p className="py-1 m-auto w-11/12 h-10 text-center bg-gray-200 rounded-lg">{profile?.description}</p>
-            )}
+            <p className="py-1 m-auto w-11/12 text-center whitespace-pre-wrap break-words bg-gray-200 rounded-lg">
+              {profile?.description}
+            </p>
           </div>
         </div>
         <p className="mt-20">{profile?.name}さんのキロクで検索</p>

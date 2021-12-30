@@ -33,8 +33,6 @@ export const PostDisplay: VFC<PostDisplayProps> = (props) => {
                   <div className="flex items-center mx-3 text-sm">{post.user?.name}</div>
                 </a>
               </Link>
-
-              <p>{post.createdAt}</p>
               <div className="flex items-center space-x-4">
                 {post.user?.userId === props.userId ? <EditPageLinkButton id={post.id} /> : <div className="w-6"></div>}
                 <CommentButton postId={post.id} />
