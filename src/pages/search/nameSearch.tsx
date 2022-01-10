@@ -1,7 +1,6 @@
 import type { Post } from "src/pages/search/postSearch";
 import type { VFC } from "react";
 import { useCallback, useState } from "react";
-import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { SearchUserDisplay } from "src/components/display/SearchUserDisplay";
 import { supabase } from "src/libs/supabase";
@@ -22,10 +21,10 @@ const NameSearch: VFC = () => {
     }
   }, []);
   return (
-    <LoginedLayout>
+    <div>
       <SearchForm how={"ナマエ"} handleSearch={searchName} />
       <SearchUserDisplay posts={posts} />
-    </LoginedLayout>
+    </div>
   );
 };
 

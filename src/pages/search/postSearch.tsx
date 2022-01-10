@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { LoginedLayout } from "src/components/layout/LoginedLayout";
 import { SearchForm } from "src/components/search/SearchForm";
 import { supabase } from "src/libs/supabase";
 import type { definitions } from "src/types/supabaseTypes";
@@ -52,7 +51,7 @@ const PostSearch = () => {
   }, []);
 
   return (
-    <LoginedLayout>
+    <div>
       <SearchForm how={"キロク"} handleSearch={searchPosts} />
       {posts.length !== 0 ? (
         <PostDisplay
@@ -66,7 +65,7 @@ const PostSearch = () => {
       ) : (
         <p className="mb-10 text-gray-400">not found</p>
       )}
-    </LoginedLayout>
+    </div>
   );
 };
 
