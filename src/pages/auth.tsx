@@ -1,9 +1,8 @@
 import type { VFC } from "react";
 import { supabase } from "src/libs/supabase";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { GuestLayout } from "src/components/layout/GuestLayout";
 
-export const Auth: VFC = () => {
+const Auth: VFC = () => {
   const handleLogin = async () => {
     await supabase.auth.signIn(
       {
@@ -15,9 +14,8 @@ export const Auth: VFC = () => {
     );
   };
   return (
-    <GuestLayout>
+    <div className="m-auto max-w-3xl font-sans text-center text-gray-600">
       <h1 className="mt-24 mb-16 text-xl">新規登録 / ログイン</h1>
-      {/* <p className="text-sm mb-">※google loginのみ対応しております。</p> */}
       <button
         onClick={() => {
           handleLogin();
@@ -27,6 +25,8 @@ export const Auth: VFC = () => {
         <AiOutlineGoogle size={40} color={"#5A5A5A"} className="m-auto" />
         <p className="text-xs">google login</p>
       </button>
-    </GuestLayout>
+    </div>
   );
 };
+
+export default Auth;
