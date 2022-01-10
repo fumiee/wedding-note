@@ -8,6 +8,7 @@ import { useFetchProfiles } from "src/hooks/useFetchProfiles";
 import { useFetchUserPosts } from "src/hooks/useFetchUserPosts";
 import { useFetchLikeFav } from "src/hooks/useFetchLikeFav";
 import { PostDisplay } from "src/components/display/PostDisplay";
+import { useRouter } from "next/router";
 
 export const User: VFC = () => {
   const { profile, fetchProfiles } = useFetchProfiles();
@@ -17,6 +18,7 @@ export const User: VFC = () => {
   const [avatar_url] = useState(profile?.avatar);
   const [weddingHall, setWeddingHall] = useState(profile?.weddingHall);
   const [description, setDescription] = useState(profile?.description);
+  const router = useRouter();
 
   useEffect(() => {
     if (!userId) return;
@@ -27,6 +29,8 @@ export const User: VFC = () => {
 
   const signOut = useCallback(() => {
     supabase.auth.signOut();
+    router.push("/topPage");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateProfile = async () => {
@@ -60,7 +64,7 @@ export const User: VFC = () => {
   };
 
   return (
-    <div className="mt-5 space-y-8 bg-gray-100">
+    <div className="pt-5 space-y-8 bg-gray-100">
       <div className="flex justify-around">
         <div>
           {profile?.avatar ? (

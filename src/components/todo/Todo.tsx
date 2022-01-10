@@ -8,7 +8,6 @@ import { HandleDone } from "src/components/todo/HandleDone";
 
 export type List = {
   id: definitions["todos"]["id"];
-  groupId: definitions["todos"]["group_id"];
   todo: definitions["todos"]["todo"];
   isDone: definitions["todos"]["is_done"];
 };

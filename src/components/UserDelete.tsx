@@ -15,12 +15,14 @@ export const UserDelete: VFC = () => {
           Authorization: `Bearer ${session.access_token}`,
         },
       });
+
       if (!res.ok) {
         throw new Error();
+      } else {
+        toast.success("退会しました");
+        supabase.auth.signOut();
+        router.push("/topPage");
       }
-      toast.success("退会しました");
-      supabase.auth.signOut();
-      router.push("/top");
     } catch (error) {
       toast.error("エラーが発生しました");
     }
