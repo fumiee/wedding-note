@@ -18,16 +18,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return () => {
       authListener?.unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [session]);
 
   return (
     <div>
-      <Layout>
-        <div>
-          <Component {...pageProps} session={session} />
-        </div>
+      <Layout session={session}>
+        <Component {...pageProps} />
       </Layout>
+
       <Toaster
         toastOptions={{
           className: "",
