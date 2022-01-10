@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dispatch, SetStateAction, VFC } from "react";
 import type { Post } from "src/pages/search/postSearch";
+import type { FavoritsId, LikesId } from "src/hooks/useFetchLikeFav";
 import { LikeButton } from "src/components/home/like/LikeButton";
 import { FavoriteButton } from "src/components/home/favorite/FavoriteButton";
 import { EditPageLinkButton } from "src/components/home/edit/EditPageLinkButton";
@@ -9,11 +10,11 @@ import { CommentButton } from "src/components/home/comment/CommentButton";
 
 type PostDisplayProps = {
   posts: Post[];
-  likes: string[];
-  setLikes: Dispatch<SetStateAction<string[]>>;
+  likes: LikesId[];
+  setLikes: Dispatch<SetStateAction<LikesId[]>>;
   userId: string | undefined;
-  favoritePostsArray: string[];
-  setFavoritePostsArray: Dispatch<SetStateAction<string[]>>;
+  favoritePostsArray: FavoritsId[];
+  setFavoritePostsArray: Dispatch<SetStateAction<FavoritsId[]>>;
 };
 
 export const PostDisplay: VFC<PostDisplayProps> = (props) => {

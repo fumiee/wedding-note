@@ -1,12 +1,14 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
+import type { LikesId } from "src/hooks/useFetchLikeFav";
+import type { definitions } from "src/types/supabaseTypes";
 import { useMemo } from "react";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { supabase } from "src/libs/supabase";
 
 type Props = {
-  postId: string;
-  likes: string[];
-  setLikes: Dispatch<SetStateAction<string[]>>;
+  postId: definitions["posts"]["id"];
+  likes: LikesId[];
+  setLikes: Dispatch<SetStateAction<LikesId[]>>;
 };
 
 export const LikeButton: VFC<Props> = (props) => {
@@ -25,6 +27,7 @@ export const LikeButton: VFC<Props> = (props) => {
       console.error("error", error);
     }
   };
+
   //いいねをつける
   const updateLike = async () => {
     try {
@@ -45,7 +48,7 @@ export const LikeButton: VFC<Props> = (props) => {
     }
   };
 
-  const hadleClick = () => {
+  const handleClick = () => {
     isLike ? updateDisLike() : updateLike();
   };
 
@@ -57,7 +60,7 @@ export const LikeButton: VFC<Props> = (props) => {
 
   return (
     <div className="flex justify-center">
-      <button onClick={hadleClick}>
+      <button onClick={handleClick}>
         {isLike ? (
           <IoHeartSharp size={22} color={"#FB8989"} className="" />
         ) : (

@@ -1,12 +1,14 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
+import type { FavoritsId } from "src/hooks/useFetchLikeFav";
+import type { definitions } from "src/types/supabaseTypes";
 import { useMemo } from "react";
 import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { supabase } from "src/libs/supabase";
 
 type Props = {
-  postId: string;
-  favoritePostsArray: string[];
-  setFavoritePostsArray: Dispatch<SetStateAction<string[]>>;
+  postId: definitions["posts"]["id"];
+  favoritePostsArray: FavoritsId[];
+  setFavoritePostsArray: Dispatch<SetStateAction<FavoritsId[]>>;
 };
 
 export const FavoriteButton: VFC<Props> = (props) => {
