@@ -16,13 +16,11 @@ export const UserDelete: VFC = () => {
         },
       });
 
-      if (!res.ok) {
-        throw new Error();
-      } else {
-        toast.success("退会しました");
-        supabase.auth.signOut();
-        router.push("/topPage");
-      }
+      if (!res.ok) throw new Error();
+
+      toast.success("退会しました");
+      await supabase.auth.signOut();
+      router.push("/topPage");
     } catch (error) {
       toast.error("エラーが発生しました");
     }
