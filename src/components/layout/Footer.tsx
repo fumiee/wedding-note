@@ -1,3 +1,4 @@
+import type { VFC } from "react";
 import Link from "next/link";
 
 type ITEM = {
@@ -5,12 +6,9 @@ type ITEM = {
   link: string;
 };
 
-const ITEM = [
-  { label: "退会する", link: "/withdrawal" },
-  // { label: "プライバシーポリシー", link: "" },
-];
+const ITEM = [{ label: "退会する", link: "/withdrawal" }];
 
-export const Footer: React.VFC = () => {
+export const Footer: VFC = () => {
   return (
     <div className="p-10 text-xs text-gray-100 bg-gray-500">
       {ITEM.map((item) => {

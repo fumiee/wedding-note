@@ -3,15 +3,27 @@ import type { PostgrestResponse } from "@supabase/postgrest-js";
 import { useState } from "react";
 import { supabase } from "src/libs/supabase";
 
-export const useFetchPosts = () => {
+//userIdに一致するpostを取得
+export const useFetchUserPosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const fetchPosts = async (query: string) => {
+  const fetchPosts = async (userId: string) => {
     try {
       const res: PostgrestResponse<Post> = await supabase
         .from("posts")
-        .select("text,id")
+        .select(
+          `
+          createdAt:created_at,
+          text,
+          id,
+          user:posts_user_id_fkey(
+            name,
+            avatar,
+            userId:user_id
+          )
+          `
+        )
         .order("created_at", { ascending: false })
-        .eq("user_id", query);
+        .eq("user_id", userId);
       if (res.error) throw res.error;
       setPosts(res.data);
     } catch (error) {

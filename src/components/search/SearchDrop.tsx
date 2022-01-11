@@ -1,8 +1,9 @@
+import Link from "next/link";
+import type { VFC } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Menu } from "@headlessui/react";
-import Link from "next/link";
 
-export const SearchDrop = () => {
+export const SearchDrop: VFC = () => {
   return (
     <div>
       <Menu>
@@ -15,7 +16,7 @@ export const SearchDrop = () => {
           <Menu.Item>
             {({ active }) => {
               return (
-                <Link href="search/postSearch">
+                <Link href="/search/postSearch">
                   <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>キロク</a>
                 </Link>
               );
@@ -24,7 +25,7 @@ export const SearchDrop = () => {
           <Menu.Item>
             {({ active }) => {
               return (
-                <Link href="search/nameSearch">
+                <Link href="/search/nameSearch">
                   <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>ナマエ</a>
                 </Link>
               );
@@ -33,7 +34,7 @@ export const SearchDrop = () => {
           <Menu.Item>
             {({ active }) => {
               return (
-                <Link href="search/whSearch">
+                <Link href="/search/whSearch">
                   <a className={`${active && "bg-gray-500 text-white rounded-lg w-20 m-auto"}`}>結婚式場</a>
                 </Link>
               );

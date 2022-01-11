@@ -11,10 +11,8 @@ export type Comment = {
   user: {
     name: definitions["profiles"]["name"];
     avatar: definitions["profiles"]["avatar"];
-    user_id: definitions["profiles"]["user_id"];
   };
 };
-// Pick<definitions["comments"], "id" | "text" | "user_id" | "post_id" | "created_at">;
 
 type Props = {
   postId: string;
@@ -37,7 +35,7 @@ export const useGetComment = (props: Props) => {
             name,
             avatar
             )
-            `
+          `
         )
         .order("created_at", { ascending: false })
         .eq("post_id", props.postId);

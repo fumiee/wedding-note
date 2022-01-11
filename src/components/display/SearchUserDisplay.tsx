@@ -13,9 +13,9 @@ export const SearchUserDisplay: VFC<Props> = (props) => {
       {props.posts.length !== 0 ? (
         props.posts.map((post) => {
           return (
-            <div key={post.user_id} className="mb-10 bg-gray-200">
+            <div key={post.userId} className="mb-10 bg-gray-200">
               <div className=" flex min-w-max bg-gray-300">
-                <Link href={`/${post.user_id}`}>
+                <Link href={`/profile/${post.userId}`}>
                   <a className="flex my-1 mx-2">
                     {post.avatar ? (
                       <Image src={post.avatar} alt="avatar" height={45} width={45} className="rounded-full" />

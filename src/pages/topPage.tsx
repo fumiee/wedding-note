@@ -2,19 +2,16 @@ import { Contents } from "src/components/intro/Contents";
 import { Entry } from "src/components/intro/Entry";
 import { LatestPosts } from "src/components/intro/LatestPosts";
 import { Top } from "src/components/intro/Top";
-import { GuestLayout } from "src/components/layout/GuestLayout";
 
-const Home = () => {
+const TopPage = () => {
   return (
     <div>
-      <GuestLayout>
-        <Top />
-        <Contents />
-        <LatestPosts />
-        <Entry />
-      </GuestLayout>
+      <Top />
+      <Contents />
+      <LatestPosts />
+      <Entry />
     </div>
   );
 };
 
-export default Home;
+export default TopPage;

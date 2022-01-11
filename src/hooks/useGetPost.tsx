@@ -18,7 +18,7 @@ export const useGetPost = () => {
           user:posts_user_id_fkey(
             name,
             avatar,
-            user_id
+            userId:user_id
           )
           `
         )

@@ -22,7 +22,7 @@ export const AddTaskForm: VFC<AddTaskFormProps> = (props) => {
         props.setErrorText(error.message);
         return;
       }
-      props.setLists([...props.lists, { todo: task, id: todos.id }]);
+      props.setLists([...props.lists, { todo: task, id: todos.id, isDone: false }]);
       setNewTaskText("");
     }
   };
