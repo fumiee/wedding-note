@@ -1,8 +1,8 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
+import type { List } from "src/components/home/todo/Todo";
 import { useCallback, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import { IoAddOutline } from "react-icons/io5";
-import type { List } from "src/components/todo/Todo";
 
 type AddTaskFormProps = {
   setErrorText: Dispatch<SetStateAction<string>>;
