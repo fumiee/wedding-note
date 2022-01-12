@@ -3,8 +3,8 @@ import type { VFC } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "src/libs/supabase";
 import { BsPencil } from "react-icons/bs";
-import { AddTaskForm } from "src/components/todo/AddTaskForm";
-import { HandleDone } from "src/components/todo/HandleDone";
+import { AddTaskForm } from "src/components/home/todo/AddTaskForm";
+import { HandleDone } from "src/components/home/todo/HandleDone";
 
 export type List = {
   id: definitions["todos"]["id"];

@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 import { Tab } from "@headlessui/react";
-import { Todo } from "src/components/todo/Todo";
+import { Todo } from "src/components/home/todo/Todo";
 import { IoBookmarkOutline, IoCheckboxOutline, IoHomeOutline } from "react-icons/io5";
 import { PostList } from "src/components/home/post/PostList";
 import { FavoriteList } from "src/components/home/favorite/FavoriteList";
