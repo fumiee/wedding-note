@@ -2,6 +2,10 @@
 
 結婚式を考えている人に向けたSNS
 
+## サイト
+
+https://github.com/fumiee/wedding-note
+
 ## なぜ作ったか
 
 結婚式準備においてネットでの情報収集が当たり前。
